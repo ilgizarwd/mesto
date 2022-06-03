@@ -7,3 +7,31 @@
 
 
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
+
+
+
+.image__item {
+  height: 282px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.bely {
+  background-color: #fff;
+  border-radius: 10px;
+  max-height: 361px;
+  max-width: 282px;
+}
+
+.title__bely {
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.tipo__flex {
+  /* display: flex; */
+  flex-direction: column;
+  max-height: 361px;
+  max-width: 282px;
+}
