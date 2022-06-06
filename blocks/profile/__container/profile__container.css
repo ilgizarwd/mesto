@@ -1,0 +1,8 @@
+.profile__container {
+  display: grid;
+  max-width: 880px;
+  max-height: 120px;
+  margin: 0 auto;
+  grid-template-columns: 120px 336px 42px 1fr;
+  grid-template-rows: 60% 40%;
+}

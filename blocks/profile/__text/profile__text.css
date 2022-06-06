@@ -1,0 +1,17 @@
+.profile__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+
+  grid-row: 2/3;
+  grid-column: 2/4;
+  margin: 0;
+  padding: 6px 0 0 30px;
+  align-self: start;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

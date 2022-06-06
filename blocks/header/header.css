@@ -1,3 +1,5 @@
 .header {
-    border-bottom: #545454 1px solid;
+  border-bottom: #545454 1px solid;
+  margin: 0 auto;
+  max-width: 68.75%;
 }
