@@ -1,1 +1,9 @@
+.popup__name {
+  padding-top: 48px;
+}
 
+@media screen and (max-width: 589px) {
+  .popup__name {
+    padding-top: 75px;
+  }
+}

@@ -21,13 +21,13 @@ function savePopupEnter(e) {
 };
 
 function closePopup() {
-  popup.classList.add('popup_hidden');
+  popup.classList.add('popup_opened');
   document.removeEventListener('keydown', closePopupESC);
   document.removeEventListener('keydown', savePopupEnter);
 }
 
 function showPopup() {
-  popup.classList.remove('popup_hidden');
+  popup.classList.remove('popup_opened');
   document.addEventListener('keydown', closePopupESC);
   document.addEventListener('keydown', savePopupEnter);
   popupTitle.value = profileTitle.textContent

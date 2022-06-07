@@ -11,110 +11,111 @@
 <body class="page">
 
   <header class="header">
-    <img class="header__logo" src="../mesto/images/logo/logo.svg" alt="Лого шапки">
+    <img class="header__logo" src="./images/logo/logo.svg" alt="Лого шапки">
   </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__container">
+        <img src="./images/content/avatar/image.jpg" alt="Фото автора" class="profile__avatar">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <button class="profile__button-edit" type="button"></button>
+        <p class="profile__text">Исследователь океана</p>
+        <button class="profile__button-add" type="button"></button>
+      </div>
+    </section>
 
-  <section class="profile">
-    <div class="profile__container">
-      <img src="./images/content/avatar/image.jpg" alt="" class="profile__avatar">
-      <h2 class="profile__title">Жак-Ив Кусто</h2>
-      <button class="profile__button-edit"></button>
-      <p class="profile__text">Исследователь океана</p>
-      <button class="profile__button-add"></button>
-    </div>
-  </section>
-
-  <section class="card">
-    <ul class="card__list">
-      <li class="card__item">
-        <div class="card__container">
-          <img class="card__foto" src="images/content/place/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
-        </div>
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <label class="card__button-like">
-            <input class="card__button-checkbox" type="checkbox" />
-            <span class="card__button-span"></span>
-          </label>
-        </div>
-      </li>
-      <li class="card__item">
-        <div class="card__container">
-          <img class="card__foto" src="images/content/place/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
-        </div>
-        <div class="card__description">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <label class="card__button-like">
-            <input class="card__button-checkbox" type="checkbox" />
-            <span class="card__button-span"></span>
-          </label>
-        </div>
-      </li>
-      <li class="card__item">
-        <div class="card__container">
-          <img class="card__foto" src="images/content/place/kirill-pershin-1556355-unsplash.png" alt="Домбай">
-        </div>
-        <div class="card__description">
-          <h2 class="card__title">Домбай</h2>
-          <label class="card__button-like">
-            <input class="card__button-checkbox" type="checkbox" />
-            <span class="card__button-span"></span>
-          </label>
-        </div>
-      </li>
-      <li class="card__item">
-        <div class="card__container">
-          <img class="card__foto" src="images/content/place/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
-        </div>
-        <div class="card__description">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <label class="card__button-like">
-            <input class="card__button-checkbox" type="checkbox" />
-            <span class="card__button-span"></span>
-          </label>
-        </div>
-      </li>
-      <li class="card__item">
-        <div class="card__container">
-          <img class="card__foto" src="images/content/place/kirill-pershin-1556355-unsplash.png" alt="Домбай">
-        </div>
-        <div class="card__description">
-          <h2 class="card__title">Домбай</h2>
-          <label class="card__button-like">
-            <input class="card__button-checkbox" type="checkbox" />
-            <span class="card__button-span"></span>
-          </label>
-        </div>
-      </li>
-      <li class="card__item">
-        <div class="card__container">
-          <img class="card__foto" src="images/content/place/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкеск">
-        </div>
-        <div class="card__description">
-          <h2 class="card__title">Карачаево-Черкеск</h2>
-          <label class="card__button-like">
-            <input class="card__button-checkbox" type="checkbox" />
-            <span class="card__button-span"></span>
-          </label>
-        </div>
-      </li>
-
-    </ul>
-  </section>
-<footer class="footer">
-  © 2020 Mesto Russia
-</footer>
-  <div class="popup popup_hidden">
+    <section class="card">
+      <ul class="card__list">
+        <li class="card__item">
+          <div class="card__container">
+            <img class="card__photo" src="images/content/place/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
+          </div>
+          <div class="card__description">
+            <h2 class="card__title">Карачаевск</h2>
+            <label class="card__button-like">
+              <input class="card__button-checkbox" type="checkbox" />
+              <span class="card__button-span"></span>
+            </label>
+          </div>
+        </li>
+        <li class="card__item">
+          <div class="card__container">
+            <img class="card__photo" src="images/content/place/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
+          </div>
+          <div class="card__description">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <label class="card__button-like">
+              <input class="card__button-checkbox" type="checkbox" />
+              <span class="card__button-span"></span>
+            </label>
+          </div>
+        </li>
+        <li class="card__item">
+          <div class="card__container">
+            <img class="card__photo" src="images/content/place/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+          </div>
+          <div class="card__description">
+            <h2 class="card__title">Домбай</h2>
+            <label class="card__button-like">
+              <input class="card__button-checkbox" type="checkbox" />
+              <span class="card__button-span"></span>
+            </label>
+          </div>
+        </li>
+        <li class="card__item">
+          <div class="card__container">
+            <img class="card__photo" src="images/content/place/kirill-pershin-1404681-unsplash.png" alt="Гора Эльбрус">
+          </div>
+          <div class="card__description">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <label class="card__button-like">
+              <input class="card__button-checkbox" type="checkbox" />
+              <span class="card__button-span"></span>
+            </label>
+          </div>
+        </li>
+        <li class="card__item">
+          <div class="card__container">
+            <img class="card__photo" src="images/content/place/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+          </div>
+          <div class="card__description">
+            <h2 class="card__title">Домбай</h2>
+            <label class="card__button-like">
+              <input class="card__button-checkbox" type="checkbox" />
+              <span class="card__button-span"></span>
+            </label>
+          </div>
+        </li>
+        <li class="card__item">
+          <div class="card__container">
+            <img class="card__photo" src="images/content/place/kirill-pershin-1088404-unsplash.png"
+              alt="Карачаево-Черкеск">
+          </div>
+          <div class="card__description">
+            <h2 class="card__title">Карачаево-Черкеск</h2>
+            <label class="card__button-like">
+              <input class="card__button-checkbox" type="checkbox" />
+              <span class="card__button-span"></span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    © 2020 Mesto Russia
+  </footer>
+  <div class="popup popup_opened">
     <div class="popup__container">
-      <p class="popup__title">Редактировать профиль</p>
+      <h2 class="popup__title">Редактировать профиль</h2>
       <input class="popup__name popup__input" type="text">
       <input class="popup__role popup__input" type="text">
-      <button class="popup__button-close"></button>
-      <button class="popup__button-save">Сохранить</button>
+      <button class="popup__button-close" type="button"></button>
+      <button class="popup__button-save" type="button">Сохранить</button>
     </div>
   </div>
 
-  <script src="pages/index.js"></script>
+  <script src="/pages/js/index.js"></script>
 </body>
 
 </html>
