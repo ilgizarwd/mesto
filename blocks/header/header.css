@@ -3,3 +3,9 @@
   margin: 0 auto;
   max-width: 68.75%;
 }
+
+@media screen and (max-width: 799px) {
+  .header {
+    max-width: 100%;
+  }
+}

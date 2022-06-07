@@ -6,3 +6,13 @@
   grid-template-columns: 120px 336px 42px 1fr;
   grid-template-rows: 60% 40%;
 }
+
+@media screen and (max-width: 799px) {
+  .profile__container {
+    grid-template-columns: repeat(2,  max-content);
+    grid-template-rows: 120px 52px 28px 100px;
+    justify-items: center;
+    justify-content: center;
+    max-height: 286px;
+  }
+}

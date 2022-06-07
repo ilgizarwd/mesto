@@ -15,3 +15,16 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+
+@media screen and (max-width: 799px) {
+  .profile__text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 1/3;
+  }
+}
