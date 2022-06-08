@@ -3,7 +3,7 @@
   grid-column: 1/2;
   border-radius: 50%;
   max-width: 120px;
-  object-fit: cover
+  object-fit: cover;
 }
 
 @media screen and (max-width: 799px) {
