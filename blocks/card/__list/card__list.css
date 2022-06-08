@@ -26,3 +26,9 @@
     padding: 36px 0 0 0;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .card__list {
+    padding: 15px 0;
+  }
+}

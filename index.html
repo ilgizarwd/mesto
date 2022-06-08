@@ -32,10 +32,8 @@
           </div>
           <div class="card__description">
             <h2 class="card__title">Карачаевск</h2>
-            <label class="card__button-like">
-              <input class="card__button-checkbox" type="checkbox" />
-              <span class="card__button-span"></span>
-            </label>
+            <button class="card__button-like" type="button">
+            </button>
           </div>
         </li>
         <li class="card__item">
@@ -44,10 +42,8 @@
           </div>
           <div class="card__description">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <label class="card__button-like">
-              <input class="card__button-checkbox" type="checkbox" />
-              <span class="card__button-span"></span>
-            </label>
+            <button class="card__button-like" type="button">
+            </button>
           </div>
         </li>
         <li class="card__item">
@@ -56,10 +52,8 @@
           </div>
           <div class="card__description">
             <h2 class="card__title">Домбай</h2>
-            <label class="card__button-like">
-              <input class="card__button-checkbox" type="checkbox" />
-              <span class="card__button-span"></span>
-            </label>
+            <button class="card__button-like" type="button">
+            </button>
           </div>
         </li>
         <li class="card__item">
@@ -68,10 +62,8 @@
           </div>
           <div class="card__description">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <label class="card__button-like">
-              <input class="card__button-checkbox" type="checkbox" />
-              <span class="card__button-span"></span>
-            </label>
+            <button class="card__button-like" type="button">
+            </button>
           </div>
         </li>
         <li class="card__item">
@@ -80,10 +72,8 @@
           </div>
           <div class="card__description">
             <h2 class="card__title">Домбай</h2>
-            <label class="card__button-like">
-              <input class="card__button-checkbox" type="checkbox" />
-              <span class="card__button-span"></span>
-            </label>
+            <button class="card__button-like" type="button">
+            </button>
           </div>
         </li>
         <li class="card__item">
@@ -93,29 +83,29 @@
           </div>
           <div class="card__description">
             <h2 class="card__title">Карачаево-Черкеск</h2>
-            <label class="card__button-like">
-              <input class="card__button-checkbox" type="checkbox" />
-              <span class="card__button-span"></span>
-            </label>
+            <button class="card__button-like" type="button">
+            </button>
           </div>
         </li>
       </ul>
     </section>
   </main>
   <footer class="footer">
-    © 2020 Mesto Russia
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
   <div class="popup popup_opened">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input class="popup__name popup__input" type="text">
-      <input class="popup__role popup__input" type="text">
+      <form class="popup__form" name="popup">
+        <input class="popup__input popup__input_name" type="text" name="popupInputName">
+        <input class="popup__input popup__input_role" type="text" name="popupInputRole">
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
       <button class="popup__button-close" type="button"></button>
-      <button class="popup__button-save" type="button">Сохранить</button>
     </div>
   </div>
 
-  <script src="/pages/js/index.js"></script>
+  <script src="./pages/js/index.js"></script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
   height: 26px;
   width: 26px;
   padding: 0;
-  margin: 0 0 8px 6px;
+  margin: 0 0 8px 5px;
   border: 1px solid #FFF;
   background-color: #000;
   background-image: url(../../..//images/icon/pen.svg);
@@ -26,5 +26,13 @@
     grid-column: 2/3;
     justify-self: start;
     margin: 0 0 0 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile__button-edit {
+    height: 18px;
+    width: 18px;
+    margin: 0 0 8px 10px;
   }
 }

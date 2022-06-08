@@ -1,3 +1,19 @@
 .card__button-like {
-  padding: 0 5px 0 0;
+  padding:0;
+  border: none;
+  background: none;
+  width: 25px;
+  height: 25px;
+  background-image: url(../../../images/icon/heart.svg);
+  background-repeat: no-repeat;
+  background-position: bottom 50% right 50%;
+  cursor: pointer;
+  transition: ease-in .1s;
 }
+
+.card__button-like:hover {
+  opacity: .5;
+  /* background-image: url(../../../images/icon/heart.svg); */
+}
+
+

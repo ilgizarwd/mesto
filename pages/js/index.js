@@ -1,35 +1,26 @@
 let button = document.querySelector('.profile__button-edit');
-let popup = document.querySelector('.popup');
-let popupCloseButton = document.querySelector('.popup__button-close');
-let popupSaveButton = document.querySelector('.popup__button-save');
 let profileTitle = document.querySelector('.profile__title');
 let profileRole = document.querySelector('.profile__text');
-let popupTitle = document.querySelector('.popup__name');
-let popupRole = document.querySelector('.popup__role');
+let popup = document.querySelector('.popup');
+let popupCloseButton = popup.querySelector('.popup__button-close');
+let popupSaveButton = popup.querySelector('.popup__button-save');
+let popupForm = document.querySelector('.popup__form');
+let popupTitle = popupForm.querySelector('.popup__input_name');
+let popupRole = popupForm.querySelector('.popup__input_role');
+let liked = document.querySelectorAll('.card__button-like');
 
-function closePopupESC(e) {
-  if (e.code === 'Escape') {
-    closePopup();
-  }
-};
-
-function savePopupEnter(e) {
-  if (e.code === 'Enter') {
-    updateProfile();
-    closePopup();
-  }
-};
+for (let i = 0; i < liked.length; i++) {
+  liked[i].addEventListener('click', function() {
+    liked[i].classList.toggle('button-like_liked');
+  });
+}
 
 function closePopup() {
   popup.classList.add('popup_opened');
-  document.removeEventListener('keydown', closePopupESC);
-  document.removeEventListener('keydown', savePopupEnter);
 }
 
 function showPopup() {
   popup.classList.remove('popup_opened');
-  document.addEventListener('keydown', closePopupESC);
-  document.addEventListener('keydown', savePopupEnter);
   popupTitle.value = profileTitle.textContent
   popupRole.value = profileRole.textContent;
 }
@@ -47,16 +38,11 @@ popupCloseButton.addEventListener('click', function () {
   closePopup();
 });
 
-popup.addEventListener('click', function (e) {
-  if (e.target === e.currentTarget) {
+function formSubmitHandler (evt) {
+    evt.preventDefault();
+    profileTitle.textContent = popupTitle.value;
+    profileRole.textContent = popupRole.value;
     closePopup();
-  }
-});
+}
 
-popupSaveButton.addEventListener('click', function () {
-  updateProfile();
-  closePopup();
-})
-
-
-
+popupForm.addEventListener('submit', formSubmitHandler);
