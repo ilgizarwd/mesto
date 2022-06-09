@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
+
 </head>
 
 <body class="page">
@@ -18,9 +19,9 @@
       <div class="profile__container">
         <img src="./images/content/avatar/image.jpg" alt="Фото автора" class="profile__avatar">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__button-edit" type="button"></button>
+        <button class="profile__button-edit" type="button" aria-label="Редактировать"></button>
         <p class="profile__text">Исследователь океана</p>
-        <button class="profile__button-add" type="button"></button>
+        <button class="profile__button-add" type="button" aria-label="Добавить"></button>
       </div>
     </section>
 
@@ -93,19 +94,19 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
-  <div class="popup popup_opened">
+  <div class="popup">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="popup">
-        <input class="popup__input popup__input_name" type="text" name="popupInputName">
-        <input class="popup__input popup__input_role" type="text" name="popupInputRole">
+        <input class="popup__input popup__input_text_name" type="text" name="popupInputName">
+        <input class="popup__input popup__input_text_role" type="text" name="popupInputRole">
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
       <button class="popup__button-close" type="button"></button>
     </div>
   </div>
 
-  <script src="./pages/js/index.js"></script>
+  <script src="./js/index.js"></script>
 </body>
 
 </html>

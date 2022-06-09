@@ -16,4 +16,7 @@
   /* background-image: url(../../../images/icon/heart.svg); */
 }
 
+.card__button-like:active {
+  background-image: url(../../../images/icon/Union.svg);
+}
 

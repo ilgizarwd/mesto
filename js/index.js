@@ -3,24 +3,16 @@ let profileTitle = document.querySelector('.profile__title');
 let profileRole = document.querySelector('.profile__text');
 let popup = document.querySelector('.popup');
 let popupCloseButton = popup.querySelector('.popup__button-close');
-let popupSaveButton = popup.querySelector('.popup__button-save');
 let popupForm = document.querySelector('.popup__form');
-let popupTitle = popupForm.querySelector('.popup__input_name');
-let popupRole = popupForm.querySelector('.popup__input_role');
-let liked = document.querySelectorAll('.card__button-like');
-
-for (let i = 0; i < liked.length; i++) {
-  liked[i].addEventListener('click', function() {
-    liked[i].classList.toggle('button-like_liked');
-  });
-}
+let popupTitle = popupForm.querySelector('.popup__input_text_name');
+let popupRole = popupForm.querySelector('.popup__input_text_role');
 
 function closePopup() {
-  popup.classList.add('popup_opened');
+  popup.classList.remove('popup_opened');
 }
 
 function showPopup() {
-  popup.classList.remove('popup_opened');
+  popup.classList.add('popup_opened');
   popupTitle.value = profileTitle.textContent
   popupRole.value = profileRole.textContent;
 }
