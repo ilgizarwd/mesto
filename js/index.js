@@ -17,11 +17,6 @@ function showPopup() {
   popupRole.value = profileRole.textContent;
 }
 
-function updateProfile(){
-  profileTitle.textContent = popupTitle.value;
-  profileRole.textContent = popupRole.value;
-}
-
 button.addEventListener('click', function () {
   showPopup();
 });
