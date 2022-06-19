@@ -7,7 +7,7 @@
   background: none;
   width: 20px;
   height: 20px;
-  background-image: url(/images/icon/Trash.svg);
+  background-image: url(../../../images/icon/Trash.svg);
   background-repeat: no-repeat;
   cursor: pointer;
   transition: ease-in .1s;
