@@ -36,33 +36,36 @@ const initialCards = [
 const cardTemplate = document.querySelector('.card__template').content;
 const cardList = document.querySelector('.card__list');
 
+
+
 initialCards.forEach(function (item) {
+
   const cardElement = cardTemplate.querySelector('.card__item').cloneNode(true);
-  cardElement.querySelector('.card__photo').src = item.link;
+  cardElement.querySelector('.card__photo').src = item.link;;
   cardElement.querySelector('.card__photo').alt = item.name;
   cardElement.querySelector('.card__title').textContent = item.name;
   cardList.append(cardElement);
-  likeDraw();
-  trashDraw();
 });
+likeDraw();
+trashDraw();
 
 function likeDraw() {
-  let liked = document.querySelectorAll('.card__button-like');
+  const liked = document.querySelectorAll('.card__button-like');
   liked.forEach(function (item) {
     item.addEventListener('click', () => {
       item.classList.toggle('card__button-like_liked');
     });
-  })
+  });
 };
 
 
 function trashDraw() {
   const cardButtonTrash = document.querySelectorAll('.card__button-trash');
-cardButtonTrash.forEach(function (item) {
-  item.addEventListener('click', () => {
-    item.parentElement.offsetParent.remove();
-  })
-});
+  cardButtonTrash.forEach(function (item) {
+    item.addEventListener('click', () => {
+      item.parentElement.offsetParent.remove();
+    });
+  });
 };
 
 
@@ -71,60 +74,57 @@ function closePopup(item) {
 };
 
 buttonEdit.addEventListener('click', function () {
-  if ((popup[0].querySelector('.popup__container_profile-edit'))) {
-    popup[0].classList.add('popup_opened');
-    let popupTitle = popup[0].querySelector('.popup__input_text_name');
-    let popupRole = popup[0].querySelector('.popup__input_text_role');
-    let popupForm = popup[0].querySelector('.popup__form');
-    popupForm.addEventListener('submit', formSubmitHandler);
-    popupTitle.value = profileTitle.textContent;
-    popupRole.value = profileRole.textContent;
-    function formSubmitHandler(evt) {
-      evt.preventDefault();
-      profileTitle.textContent = popupTitle.value;
-      profileRole.textContent = popupRole.value;
-      closePopup(0);
-    };
-    let popupCloseButton = popup[0].querySelector('.popup__button-close');
-    popupCloseButton.addEventListener('click', function () {
-      closePopup(0);
-    });
+
+  popup[0].classList.add('popup_opened');
+  let popupTitle = popup[0].querySelector('.popup__input_text_name');
+  let popupRole = popup[0].querySelector('.popup__input_text_role');
+  let popupForm = popup[0].querySelector('.popup__form');
+  popupForm.addEventListener('submit', formSubmitHandler);
+  popupTitle.value = profileTitle.textContent;
+  popupRole.value = profileRole.textContent;
+  function formSubmitHandler(evt) {
+    evt.preventDefault();
+    profileTitle.textContent = popupTitle.value;
+    profileRole.textContent = popupRole.value;
+    closePopup(0);
   };
+  let popupCloseButton = popup[0].querySelector('.popup__button-close');
+  popupCloseButton.addEventListener('click', function () {
+    closePopup(0);
+  });
+
 });
 
 buttonAdd.addEventListener('click', function () {
-  if ((popup[1].querySelector('.popup__container_new-place'))) {
-    popup[1].classList.add('popup_opened');
-    let popupForm = popup[1].querySelector('.popup__form');
-    let popupTitle = popup[1].querySelector('.popup__input_text_name');
-    let popupLink = popup[1].querySelector('.popup__input_text_link');
-      const cardElement = cardTemplate.querySelector('.card__item').cloneNode(true);
-    popupForm.addEventListener('submit', formSubmitHandler);
+
+  popup[1].classList.add('popup_opened');
+  let popupForm = popup[1].querySelector('.popup__form');
+  let popupTitle = popup[1].querySelector('.popup__input_text_name');
+  let popupLink = popup[1].querySelector('.popup__input_text_link');
 
 
-    function formSubmitHandler(evt) {
-      evt.preventDefault();
+  popupForm.addEventListener('submit', formSubmitHandler);
 
-      let cardPhoto = cardElement.querySelector('.card__photo');
-      let cardTitle = cardElement.querySelector('.card__title');
-      cardPhoto.src = popupLink.value;
-      cardPhoto.alt = popupTitle.value;
-      cardTitle.textContent = popupTitle.value;
-      cardList.prepend(cardElement);
-      // popupTitle.value = '';
-      // popupLink.value = '';
-      likeDraw();
-      trashDraw();
-      closePopup(1);
-    };
+  function formSubmitHandler(evt) {
 
-
-
-    let popupCloseButton = popup[1].querySelector('.popup__button-close');
-    popupCloseButton.addEventListener('click', function () {
-      closePopup(1);
-    });
+    evt.preventDefault();
+    const cardElement = cardTemplate.querySelector('.card__item').cloneNode(true);
+    cardElement.querySelector('.card__photo').src = popupLink.value;;
+    cardElement.querySelector('.card__photo').alt = popupTitle.value;
+    cardElement.querySelector('.card__title').textContent = popupTitle.value;
+    likeDraw();
+    trashDraw();
+    cardList.prepend(cardElement);
+    // debugger;
+    popupForm.reset();
+    closePopup(1);
   };
+
+});
+
+let popupCloseButton = popup[1].querySelector('.popup__button-close');
+popupCloseButton.addEventListener('click', function () {
+  closePopup(1);
 });
 
 // function showPopup() {
@@ -134,6 +134,30 @@ buttonAdd.addEventListener('click', function () {
 //   // popupRole.value = profileRole.textContent;
 // }
 
+
+const cardPhoto1 = document.querySelectorAll('.card__photo');
+cardPhoto1.forEach(function (item) {
+  item.addEventListener('click', function () {
+    popup[2].querySelector('.popup__slide_link').src = this.currentSrc;
+
+    popup[2].classList.add('popup_opened');
+    const popcont = document.querySelector('.popup__container_card-show');
+    popcont.style.width = "auto";
+    popcont.style.background = "rgba(0, 0, 0, 0.9)";
+    popcont.style.padding = "0";
+    popcont.style.maxWidth = "75vw";
+    popcont.style.maxheight = "75vw";
+    // background: rgba(0, 0, 0, 0.9)
+    popup[2].style.background = "rgba(0, 0, 0, 0.9)";
+
+    popupCloseButton = popup[2].querySelector('.popup__button-close');
+    popupCloseButton.addEventListener('click', () => {
+      popup[2].remove();
+      closePopup();
+    });
+
+  })
+});
 
 
 
