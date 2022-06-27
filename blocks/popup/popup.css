@@ -7,7 +7,7 @@
   z-index: 2;
   /* display: none; */
   justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
 
   visibility: hidden;
   opacity: 0;
