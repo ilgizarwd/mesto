@@ -56,16 +56,17 @@ function cardRender(item) {
   const cardButtonlike = cardElement.querySelector('.card__button-like');
   const cardButtonTrash = cardElement.querySelector('.card__button-trash');
   const newCardPhoto = cardElement.querySelector('.card__photo');
+  const newCardTitle = cardElement.querySelector('.card__title');
   cardButtonlike.addEventListener('click', () => {
     cardButtonlike.classList.toggle('card__button-like_liked');
   });
   cardButtonTrash.addEventListener('click', () => {
-    cardButtonTrash.parentElement.offsetParent.remove();
+    cardButtonTrash.closest('.card__item').remove();
   });
 
-  cardElement.querySelector('.card__photo').src = item.link;
-  cardElement.querySelector('.card__photo').alt = item.name;
-  cardElement.querySelector('.card__title').textContent = item.name;
+  newCardPhoto.src = item.link;
+  newCardPhoto.alt = item.name;
+  newCardTitle.textContent = item.name;
 
   newCardPhoto.addEventListener('click', () => {
     popUpSlideShow(item);
@@ -87,30 +88,26 @@ buttonEdit.addEventListener('click', () => {
   openPopup(popupProfileEdit);
   popupTitle.value = profileTitle.textContent;
   popupRole.value = profileRole.textContent;
-  popupCloseButtonEdit.addEventListener('click', function () {
-    closePopup(popupProfileEdit);
-  });
 });
-
+popupCloseButtonEdit.addEventListener('click', function () {
+  closePopup(popupProfileEdit);
+});
 function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
   profileTitle.textContent = popupTitle.value;
   profileRole.textContent = popupRole.value;
   closePopup(popupProfileEdit);
 };
-const popupCloseButtonPlace = popupNewPlace.querySelector('.popup__button-close');
+
 buttonAdd.addEventListener('click', () => {
   openPopup(popupNewPlace);
-
-  popupCloseButtonPlace.addEventListener('click', function () {
-    formReset(popupFormPlace);
-    closePopup(popupNewPlace);
-  });
+  popupFormPlace.reset();
+});
+const popupCloseButtonPlace = popupNewPlace.querySelector('.popup__button-close');
+popupCloseButtonPlace.addEventListener('click', function () {
+  closePopup(popupNewPlace);
 });
 
-function formReset(item) {
-  item.reset();
-}
 const popupPlace = popupNewPlace.querySelector('.popup__input_text_place');
 const popupLink = popupNewPlace.querySelector('.popup__input_text_link');
 
