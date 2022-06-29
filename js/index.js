@@ -121,7 +121,6 @@ function formSubmitHandlerPlace(evt) {
     name: popupTitlePlace
   };
   cardList.prepend(cardRender(item));
-  formReset(popupFormPlace);
   closePopup(popupNewPlace);
 };
 
