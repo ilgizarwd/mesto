@@ -1,90 +1,117 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
-  <title>Mesto</title>
+  <body class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo/logo.svg" alt="Лого шапки" />
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__container">
+          <img
+            src="./images/content/avatar/image.jpg"
+            alt="Фото автора"
+            class="profile__avatar"
+          />
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button
+            class="profile__button-edit"
+            type="button"
+            aria-label="Редактировать"
+          ></button>
+          <p class="profile__text">Исследователь океана</p>
+          <button
+            class="profile__button-add"
+            type="button"
+            aria-label="Добавить"
+          ></button>
+        </div>
+      </section>
 
-</head>
+      <section class="card" aria-label="Card section">
+        <ul class="card__list"></ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
 
-<body class="page">
-
-  <header class="header">
-    <img class="header__logo" src="./images/logo/logo.svg" alt="Лого шапки">
-  </header>
-  <main class="content">
-    <section class="profile">
-      <div class="profile__container">
-        <img src="./images/content/avatar/image.jpg" alt="Фото автора" class="profile__avatar">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__button-edit" type="button" aria-label="Редактировать"></button>
-        <p class="profile__text">Исследователь океана</p>
-        <button class="profile__button-add" type="button" aria-label="Добавить"></button>
+    <div class="popup popup_profile-edit">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="popup">
+          <input
+            class="popup__input popup__input_text_name"
+            type="text"
+            name="popupInputName"
+          />
+          <input
+            class="popup__input popup__input_text_role"
+            type="text"
+            name="popupInputRole"
+          />
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__button-close" type="button"></button>
       </div>
-    </section>
-
-    <section class="card" aria-label="Card section">
-      <ul class="card__list">
-      </ul>
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer__copyright">© 2020 Mesto Russia</p>
-  </footer>
-
-  <div class="popup popup_profile-edit">
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="popup">
-        <input class="popup__input popup__input_text_name" type="text" name="popupInputName">
-        <input class="popup__input popup__input_text_role" type="text" name="popupInputRole">
-        <button class="popup__button-save" type="submit">Сохранить</button>
-      </form>
-      <button class="popup__button-close" type="button"></button>
     </div>
-  </div>
 
-  <div class="popup popup_new-place">
-    <div class="popup__container">
-      <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="popup">
-        <input class="popup__input popup__input_text_place" type="text" name="popupInputPlace" placeholder="Название">
-        <input class="popup__input popup__input_text_link" type="text" name="popupInputLink" placeholder="Ссылка на картинку">
-        <button class="popup__button-save" type="submit">Создать</button>
-      </form>
-      <button class="popup__button-close" type="button"></button>
-    </div>
-  </div>
-
-  <div class="popup popup_card-show">
-    <div class="popup__container">
-      <figure class="popup__slide">
-        <img class="popup__slide popup__slide_link" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
-        <figcaption class="popup__slide popup__slide_desc">Архыз</figcaption>
-    </figure>
-      <button class="popup__button-close" type="button"></button>
-    </div>
-  </div>
-
-
-
-  <template class="card__template">
-    <li class="card__item">
-      <div class="card__container">
-        <button class="card__button-trash"></button>
-        <img class="card__photo" src="#" alt="">
+    <div class="popup popup_new-place">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="popup">
+          <input
+            class="popup__input popup__input_text_place"
+            type="text"
+            name="popupInputPlace"
+            placeholder="Название"
+          />
+          <input
+            class="popup__input popup__input_text_link"
+            type="text"
+            name="popupInputLink"
+            placeholder="Ссылка на картинку"
+          />
+          <button class="popup__button-save" type="submit">Создать</button>
+        </form>
+        <button class="popup__button-close" type="button"></button>
       </div>
-      <div class="card__description">
-        <h2 class="card__title"></h2>
-        <button class="card__button-like" type="button">
-        </button>
+    </div>
+
+    <div class="popup popup_card-show">
+      <div class="popup__container">
+        <figure class="popup__slide">
+          <img
+            class="popup__slide popup__slide_link"
+            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+            alt=""
+          />
+          <figcaption class="popup__slide popup__slide_desc">Архыз</figcaption>
+        </figure>
+        <button class="popup__button-close" type="button"></button>
       </div>
-    </li>
-  </template>
+    </div>
 
-<script src="./js/index.js"></script>
-</body>
+    <template class="card__template">
+      <li class="card__item">
+        <div class="card__container">
+          <button class="card__button-trash"></button>
+          <img class="card__photo" src="#" alt="" />
+        </div>
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button class="card__button-like" type="button"></button>
+        </div>
+      </li>
+    </template>
 
+    <script src="./js/index.js"></script>
+    <script src="./js/validate.js"></script>
+  </body>
 </html>
