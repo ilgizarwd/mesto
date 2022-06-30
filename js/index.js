@@ -86,9 +86,11 @@ const escPopupClose = (evt) => {
   }
 };
 
-const mousePopupClose = () => {
+const mousePopupClose = (evt) => {
   const popup = document.querySelector(".popup_opened");
-  closePopup(popup);
+  if (evt.target === popup) {
+    closePopup(popup);
+  }
 };
 
 popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);

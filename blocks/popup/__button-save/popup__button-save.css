@@ -5,11 +5,11 @@
   padding: 0;
   margin: 50px 0 35px;
   border: 0;
-  color: #FFF;
+  color: #fff;
   background-color: #000;
   background-repeat: no-repeat;
   background-position: bottom 50% right 50%;
-  transition: ease-in .1s;
+  transition: ease-in 0.1s;
   cursor: pointer;
   font-style: normal;
   font-weight: 400;
@@ -19,7 +19,15 @@
 }
 
 .popup__button-save:hover {
-  opacity: .8;
+  opacity: 0.8;
+}
+
+.popup__button-save:disabled {
+  opacity: 0.3;
+  color: #000;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 2px;
 }
 
 @media screen and (max-width: 589px) {
