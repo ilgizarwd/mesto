@@ -69,22 +69,40 @@ function cardRender(item) {
 }
 
 function closePopup(item) {
+
   item.classList.remove("popup_opened");
+
 }
 
 function openPopup(item) {
   item.classList.add("popup_opened");
   item.addEventListener("mousedown", (evt) => {
-    if (evt.target === item) {
-      closePopup(item);
-    }
+    mousePopupClose(item, evt);
   });
-  document.addEventListener("keydown", (evt) => {
-    if (evt.code === "Escape") {
-      closePopup(item);
-    }
-  });
+  // debugger;
+  document.addEventListener("keydown", escPopupClose(item));
 }
+
+const escPopupClose = (item) => (evt) => {
+
+  console.log(1);
+  if (evt.code === "Escape") {
+    closePopup(item);
+    document.removeEventListener("keydown", escPopupClose(item));
+  }
+}
+
+function mousePopupClose(item, evt) {
+  if (evt.target === item) {
+    closePopup(item);
+  }
+}
+
+// document.addEventListener("keydown", (evt) => {
+//   if (evt.code === "Escape") {
+//     closePopup(item);
+//   }
+// });
 
 popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);
 
