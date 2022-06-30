@@ -46,13 +46,13 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <form class="popup__form" name="popup" novalidate>
+        <form class="form form_edit" name="edit" novalidate>
           <fieldset class="form__set">
             <label class="form__field">
               <input
-                class="popup__input popup__input_text_name"
+                class="form__input form__input_text_name"
                 type="text"
-                name="popupInputName"
+                name="formInputName"
                 minlength="2"
                 maxlength="40"
                 required
@@ -61,16 +61,16 @@
             </label>
             <label class="form__field">
               <input
-                class="popup__input popup__input_text_role"
+                class="form__input form__input_text_role"
                 type="text"
-                name="popupInputRole"
+                name="formInputRole"
                 minlength="2"
                 maxlength="200"
                 required
               />
               <span class="form__input-error role-input-error"></span>
             </label>
-            <button class="popup__button-save" type="submit" disabled>
+            <button class="form__button-save" type="submit" disabled>
               Сохранить
             </button>
           </fieldset>
@@ -83,26 +83,24 @@
     <div class="popup popup_new-place">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="popup" novalidate>
+        <form class="form form_new-place" name="place" novalidate>
           <input
-            class="popup__input popup__input_text_place"
+            class="form__input form__input_text_place"
             type="text"
-            name="popupInputPlace"
+            name="formInputPlace"
             placeholder="Название"
             minlength="2"
-            maxlength="40"
+            maxlength="30"
             required
           />
           <input
-            class="popup__input popup__input_text_link"
-            type="text"
-            name="popupInputLink"
+            class="form__input form__input_text_link"
+            type="url"
+            name="formInputLink"
             placeholder="Ссылка на картинку"
-            minlength="2"
-            maxlength="40"
             required
           />
-          <button class="popup__button-save" type="submit" disabled>
+          <button class="form__button-save" type="submit" disabled>
             Создать
           </button>
         </form>
@@ -115,10 +113,10 @@
         <figure class="popup__slide">
           <img
             class="popup__slide popup__slide_link"
-            src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+            src="#"
             alt=""
           />
-          <figcaption class="popup__slide popup__slide_desc">Архыз</figcaption>
+          <figcaption class="popup__slide popup__slide_desc"></figcaption>
         </figure>
         <button class="popup__button-close" type="button"></button>
       </div>
