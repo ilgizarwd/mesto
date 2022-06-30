@@ -69,40 +69,27 @@ function cardRender(item) {
 }
 
 function closePopup(item) {
-
   item.classList.remove("popup_opened");
-
 }
 
 function openPopup(item) {
   item.classList.add("popup_opened");
-  item.addEventListener("mousedown", (evt) => {
-    mousePopupClose(item, evt);
-  });
-  // debugger;
-  document.addEventListener("keydown", escPopupClose(item));
+  item.addEventListener("mousedown", mousePopupClose);
+  document.addEventListener("keydown", escPopupClose);
 }
 
-const escPopupClose = (item) => (evt) => {
-
-  console.log(1);
+const escPopupClose = (evt) => {
+  const popup = document.querySelector(".popup_opened");
   if (evt.code === "Escape") {
-    closePopup(item);
-    document.removeEventListener("keydown", escPopupClose(item));
+    closePopup(popup);
+    document.removeEventListener("keydown", escPopupClose);
   }
-}
+};
 
-function mousePopupClose(item, evt) {
-  if (evt.target === item) {
-    closePopup(item);
-  }
-}
-
-// document.addEventListener("keydown", (evt) => {
-//   if (evt.code === "Escape") {
-//     closePopup(item);
-//   }
-// });
+const mousePopupClose = () => {
+  const popup = document.querySelector(".popup_opened");
+  closePopup(popup);
+};
 
 popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);
 
