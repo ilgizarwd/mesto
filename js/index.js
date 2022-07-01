@@ -40,7 +40,7 @@ function cardRender(item) {
 }
 
 const formsConfig = {
-  formSelector: ".form",
+  formSelector: "formPlace",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button-save",
   inactiveButtonClass: "form__button-save_disabled",
@@ -48,48 +48,16 @@ const formsConfig = {
   errorClass: "popup__error_visible",
 };
 
+enableValidation(formsConfig);
+
 const formPlace = document.forms.place;
 const formPlaceFields = Array.from(formPlace.querySelectorAll(".form__input"));
-const buttonSubmitFormPlace = formPlace.querySelector('.form__button-save');
+const buttonSubmitFormPlace = formPlace.querySelector(".form__button-save");
+
 const formEdit = document.forms.edit;
+const formEditFields = Array.from(formEdit.querySelectorAll(".form__input"));
+const buttonSubmitFormEdit = formEdit.querySelector(".form__button-save");
 
-formPlaceFields.forEach((elementField) => {
-  // console.log(elementField);
-  const errorTextContainerSelector = `.form__item-error_field_${elementField.name}`;
-  const elementError = formPlace.querySelector(errorTextContainerSelector);
-
-  elementField.addEventListener("input", (e) => {
-    const fieldIsValid = elementField.validity.valid;
-    elementError.textContent = elementField.validationMessage;
-    if (!fieldIsValid) {
-      elementField.classList.add("form__item_invalid");
-    } else {
-      elementField.classList.remove("form__item_invalid");
-    }
-    const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
-    if (formIsValid) {
-      buttonSubmitFormPlace.removeAttribute("disabled");
-    } else {
-      buttonSubmitFormPlace.setAttribute("disabled", "disabled");
-    }
-  });
-});
-
-const submitPlaceHandler = (e) => {
-  e.preventDefault();
-  buttonSubmitFormPlace.setAttribute('disabled', 'disabled');
-
-  const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
-  if (formIsValid) {
-    const name = e.target.name.value;
-    const link = e.target.link.value;
-
-    closePopup(popupPlace);
-
-    const place = createPlace(name, link);
-    addPlace(place);
-  }
-};
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -100,9 +68,6 @@ const openPopup = (popup) => {
 const openPopupPlace = () => {
   formPlace.reset();
   formPlace.submit.setAttribute("disabled", "disabled");
-
-  // formPlace.formInputPlace.focus();
-
   openPopup(popupNewPlace);
 };
 
@@ -194,3 +159,47 @@ function popUpSlideShow(item) {
   cardLink.alt = item.name;
   cardDesc.textContent = item.name;
 }
+
+formPlaceFields.forEach((elementField) => {
+  // console.log(elementField);
+  const errorTextContainerSelector = `.form__item-error_field_${elementField.name}`;
+  const elementError = formPlace.querySelector(errorTextContainerSelector);
+
+  elementField.addEventListener("input", (e) => {
+    const fieldIsValid = elementField.validity.valid;
+    elementError.textContent = elementField.validationMessage;
+    if (!fieldIsValid) {
+      elementField.classList.add("form__item_invalid");
+    } else {
+      elementField.classList.remove("form__item_invalid");
+    }
+    const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
+    if (formIsValid) {
+      buttonSubmitFormPlace.removeAttribute("disabled");
+    } else {
+      buttonSubmitFormPlace.setAttribute("disabled", "disabled");
+    }
+  });
+});
+
+formEditFields.forEach((elementField) => {
+  // console.log(elementField);
+  const errorTextContainerSelector = `.form__item-error_field_${elementField.name}`;
+  const elementError = formEdit.querySelector(errorTextContainerSelector);
+
+  elementField.addEventListener("input", (e) => {
+    const fieldIsValid = elementField.validity.valid;
+    elementError.textContent = elementField.validationMessage;
+    if (!fieldIsValid) {
+      elementField.classList.add("form__item_invalid");
+    } else {
+      elementField.classList.remove("form__item_invalid");
+    }
+    const formIsValid = formEditFields.every(({ validity }) => validity.valid);
+    if (formIsValid) {
+      buttonSubmitFormEdit.removeAttribute("disabled");
+    } else {
+      buttonSubmitFormEdit.setAttribute("disabled", "disabled");
+    }
+  });
+});
