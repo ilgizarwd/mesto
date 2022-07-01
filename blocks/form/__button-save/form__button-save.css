@@ -18,6 +18,14 @@
   text-align: center;
 }
 
+.form__button-save:disabled {
+  opacity: 0.3;
+  color: #000;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 2px;
+}
+
 .form__button-save:hover {
   opacity: 0.8;
 }

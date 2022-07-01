@@ -1,3 +1,3 @@
-function enableValidation(item) {
-    console.log(item)
-}
+const enableValidation = (config) => {
+  // обход всех форм и всех полей каждой формы
+};

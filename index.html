@@ -70,7 +70,7 @@
               />
               <span class="form__input-error role-input-error"></span>
             </label>
-            <button class="form__button-save" type="submit" disabled>
+            <button class="form__button-save" type="submit">
               Сохранить
             </button>
           </fieldset>
@@ -87,20 +87,22 @@
           <input
             class="form__input form__input_text_place"
             type="text"
-            name="formInputPlace"
+            name="place"
             placeholder="Название"
             minlength="2"
             maxlength="30"
             required
           />
+          <span class="form__item-error form__item-error_field_place"></span>
           <input
             class="form__input form__input_text_link"
             type="url"
-            name="formInputLink"
+            name="link"
             placeholder="Ссылка на картинку"
             required
           />
-          <button class="form__button-save" type="submit" disabled>
+          <span class="form__item-error form__item-error_field_link"></span>
+          <button class="form__button-save" type="submit" name="submit">
             Создать
           </button>
         </form>
@@ -130,8 +132,9 @@
         </div>
       </li>
     </template>
-
-    <script src="./js/index.js"></script>
+    <script src="./js/cards.js"></script>    
     <script src="./js/validate.js"></script>
+    <script src="./js/index.js"></script>
+
   </body>
 </html>

@@ -11,8 +11,37 @@ const popupNewPlace = document.querySelector(".popup_new-place");
 const popupCardShow = document.querySelector(".popup_card-show");
 const formTitle = popupProfileEdit.querySelector(".form__input_text_name");
 const formRole = popupProfileEdit.querySelector(".form__input_text_role");
+const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
+const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
 
-initialCards.forEach((item) => {
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
+initialCards.forEach(function (item) {
   cardList.append(cardRender(item));
 });
 
@@ -39,75 +68,14 @@ function cardRender(item) {
   return cardElement;
 }
 
-const formsConfig = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button-save",
-  inactiveButtonClass: "form__button-save_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
-const formPlace = document.forms.place;
-const formPlaceFields = Array.from(formPlace.querySelectorAll(".form__input"));
-const buttonSubmitFormPlace = formPlace.querySelector('.form__button-save');
-const formEdit = document.forms.edit;
-
-formPlaceFields.forEach((elementField) => {
-  // console.log(elementField);
-  const errorTextContainerSelector = `.form__item-error_field_${elementField.name}`;
-  const elementError = formPlace.querySelector(errorTextContainerSelector);
-
-  elementField.addEventListener("input", (e) => {
-    const fieldIsValid = elementField.validity.valid;
-    elementError.textContent = elementField.validationMessage;
-    if (!fieldIsValid) {
-      elementField.classList.add("form__item_invalid");
-    } else {
-      elementField.classList.remove("form__item_invalid");
-    }
-    const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
-    if (formIsValid) {
-      buttonSubmitFormPlace.removeAttribute("disabled");
-    } else {
-      buttonSubmitFormPlace.setAttribute("disabled", "disabled");
-    }
-  });
-});
-
-const submitPlaceHandler = (e) => {
-  e.preventDefault();
-  buttonSubmitFormPlace.setAttribute('disabled', 'disabled');
-
-  const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
-  if (formIsValid) {
-    const name = e.target.name.value;
-    const link = e.target.link.value;
-
-    closePopup(popupPlace);
-
-    const place = createPlace(name, link);
-    addPlace(place);
-  }
-};
-
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-  popup.addEventListener("mousedown", mousePopupClose);
-  document.addEventListener("keydown", escPopupClose);
-};
-
-const openPopupPlace = () => {
-  formPlace.reset();
-  formPlace.submit.setAttribute("disabled", "disabled");
-
-  // formPlace.formInputPlace.focus();
-
-  openPopup(popupNewPlace);
-};
-
 function closePopup(item) {
   item.classList.remove("popup_opened");
+}
+
+function openPopup(item) {
+  item.classList.add("popup_opened");
+  item.addEventListener("mousedown", mousePopupClose);
+  document.addEventListener("keydown", escPopupClose);
 }
 
 const escPopupClose = (evt) => {
@@ -125,7 +93,7 @@ const mousePopupClose = (evt) => {
   }
 };
 
-formEdit.addEventListener("submit", formSubmitHandlerEdit);
+popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);
 
 const popupCloseButtonEdit = popupProfileEdit.querySelector(
   ".popup__button-close"
@@ -149,7 +117,8 @@ function formSubmitHandlerEdit(evt) {
 }
 
 buttonAdd.addEventListener("click", () => {
-  openPopupPlace(popupNewPlace);
+  openPopup(popupNewPlace);
+  popupFormPlace.reset();
 });
 
 const popupCloseButtonPlace = popupNewPlace.querySelector(
@@ -160,15 +129,15 @@ popupCloseButtonPlace.addEventListener("click", function () {
   closePopup(popupNewPlace);
 });
 
-const inputPlace = popupNewPlace.querySelector(".form__input_text_place");
-const inputLink = popupNewPlace.querySelector(".form__input_text_link");
+const formPlace = popupNewPlace.querySelector(".form__input_text_place");
+const formLink = popupNewPlace.querySelector(".form__input_text_link");
 
-formPlace.addEventListener("submit", formSubmitHandlerPlace);
+popupFormPlace.addEventListener("submit", formSubmitHandlerPlace);
 
 function formSubmitHandlerPlace(evt) {
   evt.preventDefault();
-  const formTitlePlace = inputPlace.value;
-  const formLinkPlace = inputLink.value;
+  const formTitlePlace = formPlace.value;
+  const formLinkPlace = formLink.value;
   const item = {
     link: formLinkPlace,
     name: formTitlePlace,
