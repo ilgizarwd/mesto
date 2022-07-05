@@ -3,14 +3,17 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 17px;
+    line-height: calc(1 / 14 * 16);
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     outline: none;
-    padding: 28px 0 9px;
+    /* padding: 28px 0 8px; */
+    padding: 0 0 8px;
     width: 100%;
   }
   
+
+
   @media screen and (max-width: 589px) {
     .form__input {
       padding: 25px 0 8px;
