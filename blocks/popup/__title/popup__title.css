@@ -20,6 +20,6 @@ border-top-right-radius: 10px;
 
 @media screen and (max-width: 400px) {
   .popup__title {
-    /* padding-bottom: 45px; */
+    padding-bottom: 45px;
   }
 }

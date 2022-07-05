@@ -11,10 +11,14 @@ const popupNewPlace = document.querySelector(".popup_new-place");
 const popupCardShow = document.querySelector(".popup_card-show");
 const formTitle = popupProfileEdit.querySelector(".form__input_text_name");
 const formRole = popupProfileEdit.querySelector(".form__input_text_role");
+const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
+const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
 
-initialCards.forEach((item) => {
+initialCards.forEach(function (item) {
   cardList.append(cardRender(item));
 });
+
+enableValidation(formsConfig);
 
 function cardRender(item) {
   const cardElement = cardTemplate.querySelector(".card__item").cloneNode(true);
@@ -39,40 +43,14 @@ function cardRender(item) {
   return cardElement;
 }
 
-const formsConfig = {
-  formSelector: "formPlace",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button-save",
-  inactiveButtonClass: "form__button-save_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
-enableValidation(formsConfig);
-
-const formPlace = document.forms.place;
-const formPlaceFields = Array.from(formPlace.querySelectorAll(".form__input"));
-const buttonSubmitFormPlace = formPlace.querySelector(".form__button-save");
-
-const formEdit = document.forms.edit;
-const formEditFields = Array.from(formEdit.querySelectorAll(".form__input"));
-const buttonSubmitFormEdit = formEdit.querySelector(".form__button-save");
-
-
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-  popup.addEventListener("mousedown", mousePopupClose);
-  document.addEventListener("keydown", escPopupClose);
-};
-
-const openPopupPlace = () => {
-  formPlace.reset();
-  formPlace.submit.setAttribute("disabled", "disabled");
-  openPopup(popupNewPlace);
-};
-
 function closePopup(item) {
   item.classList.remove("popup_opened");
+}
+
+function openPopup(item) {
+  item.classList.add("popup_opened");
+  item.addEventListener("mousedown", mousePopupClose);
+  document.addEventListener("keydown", escPopupClose);
 }
 
 const escPopupClose = (evt) => {
@@ -90,7 +68,7 @@ const mousePopupClose = (evt) => {
   }
 };
 
-formEdit.addEventListener("submit", formSubmitHandlerEdit);
+popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);
 
 const popupCloseButtonEdit = popupProfileEdit.querySelector(
   ".popup__button-close"
@@ -114,7 +92,8 @@ function formSubmitHandlerEdit(evt) {
 }
 
 buttonAdd.addEventListener("click", () => {
-  openPopupPlace(popupNewPlace);
+  openPopup(popupNewPlace);
+  popupFormPlace.reset();
 });
 
 const popupCloseButtonPlace = popupNewPlace.querySelector(
@@ -125,15 +104,15 @@ popupCloseButtonPlace.addEventListener("click", function () {
   closePopup(popupNewPlace);
 });
 
-const inputPlace = popupNewPlace.querySelector(".form__input_text_place");
-const inputLink = popupNewPlace.querySelector(".form__input_text_link");
+const formPlace = popupNewPlace.querySelector(".form__input_text_place");
+const formLink = popupNewPlace.querySelector(".form__input_text_link");
 
-formPlace.addEventListener("submit", formSubmitHandlerPlace);
+popupFormPlace.addEventListener("submit", formSubmitHandlerPlace);
 
 function formSubmitHandlerPlace(evt) {
   evt.preventDefault();
-  const formTitlePlace = inputPlace.value;
-  const formLinkPlace = inputLink.value;
+  const formTitlePlace = formPlace.value;
+  const formLinkPlace = formLink.value;
   const item = {
     link: formLinkPlace,
     name: formTitlePlace,
@@ -159,47 +138,3 @@ function popUpSlideShow(item) {
   cardLink.alt = item.name;
   cardDesc.textContent = item.name;
 }
-
-formPlaceFields.forEach((elementField) => {
-  // console.log(elementField);
-  const errorTextContainerSelector = `.form__item-error_field_${elementField.name}`;
-  const elementError = formPlace.querySelector(errorTextContainerSelector);
-
-  elementField.addEventListener("input", (e) => {
-    const fieldIsValid = elementField.validity.valid;
-    elementError.textContent = elementField.validationMessage;
-    if (!fieldIsValid) {
-      elementField.classList.add("form__item_invalid");
-    } else {
-      elementField.classList.remove("form__item_invalid");
-    }
-    const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
-    if (formIsValid) {
-      buttonSubmitFormPlace.removeAttribute("disabled");
-    } else {
-      buttonSubmitFormPlace.setAttribute("disabled", "disabled");
-    }
-  });
-});
-
-formEditFields.forEach((elementField) => {
-  // console.log(elementField);
-  const errorTextContainerSelector = `.form__item-error_field_${elementField.name}`;
-  const elementError = formEdit.querySelector(errorTextContainerSelector);
-
-  elementField.addEventListener("input", (e) => {
-    const fieldIsValid = elementField.validity.valid;
-    elementError.textContent = elementField.validationMessage;
-    if (!fieldIsValid) {
-      elementField.classList.add("form__item_invalid");
-    } else {
-      elementField.classList.remove("form__item_invalid");
-    }
-    const formIsValid = formEditFields.every(({ validity }) => validity.valid);
-    if (formIsValid) {
-      buttonSubmitFormEdit.removeAttribute("disabled");
-    } else {
-      buttonSubmitFormEdit.setAttribute("disabled", "disabled");
-    }
-  });
-});
