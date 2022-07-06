@@ -50,29 +50,32 @@
           <fieldset class="form__set">
             <label class="form__field">
               <input
-                class="form__input form__input_text_name"
+                class="form__input form__input_text_title"
                 type="text"
                 name="formInputName"
                 minlength="2"
                 maxlength="40"
                 required
               />
-              <span class="form__item-error form__item-error_field_formInputName"></span>
+              <!-- form__input_text_name -->
+              <span
+                class="form__input-error form__input-error_field_formInputName"
+              ></span>
             </label>
             <label class="form__field">
               <input
-                class="form__input form__input_text_role"
+                class="form__input form__input_text_subtitle"
                 type="text"
                 name="formInputRole"
                 minlength="2"
                 maxlength="200"
                 required
               />
-              <span class="form__item-error form__item-error_field_formInputRole"></span>
+              <span
+                class="form__input-error form__input-error_field_formInputRole"
+              ></span>
             </label>
-            <button class="form__button-save" type="submit">
-              Сохранить
-            </button>
+            <button class="form__button-save" type="submit">Сохранить</button>
           </fieldset>
         </form>
 
@@ -84,27 +87,29 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <form class="form form_new-place" name="place" novalidate>
-          <input
-            class="form__input form__input_text_place"
-            type="text"
-            name="place"
-            placeholder="Название"
-            minlength="2"
-            maxlength="30"
-            required
-          />
-          <span class="form__item-error form__item-error_field_place"></span>
-          <input
-            class="form__input form__input_text_link"
-            type="url"
-            name="link"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span class="form__item-error form__item-error_field_link"></span>
-          <button class="form__button-save" type="submit" name="submit">
-            Создать
-          </button>
+          <fieldset class="form__set">
+            <input
+              class="form__input form__input_text_title"
+              type="text"
+              name="place"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="form__input-error form__input-error_field_place"></span>
+            <input
+              class="form__input form__input_text_subtitle"
+              type="url"
+              name="link"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span class="form__input-error form__input-error_field_link"></span>
+            <button class="form__button-save" type="submit" name="submit">
+              Создать
+            </button>
+          </fieldset>
         </form>
         <button class="popup__button-close" type="button"></button>
       </div>
@@ -135,6 +140,5 @@
     <script src="./js/cards.js"></script>
     <script src="./js/validate.js"></script>
     <script src="./js/index.js"></script>
-
   </body>
 </html>

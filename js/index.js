@@ -9,8 +9,8 @@ const cardList = document.querySelector(".card__list");
 const popupProfileEdit = document.querySelector(".popup_profile-edit");
 const popupNewPlace = document.querySelector(".popup_new-place");
 const popupCardShow = document.querySelector(".popup_card-show");
-const formTitle = popupProfileEdit.querySelector(".form__input_text_name");
-const formRole = popupProfileEdit.querySelector(".form__input_text_role");
+const formTitle = popupProfileEdit.querySelector(".form__input_text_title");
+const formRole = popupProfileEdit.querySelector(".form__input_text_subtitle");
 const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
 const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
 
@@ -19,13 +19,13 @@ initialCards.forEach(function (item) {
 });
 
 const formsConfig = {
-  formSelector: "form",
-  formFieldset: "form__set",
+  formSelector: ".form",
+  formFieldset: ".form__set",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button-save",
   inactiveButtonClass: "form__button-save_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  inputErrorClass: "form__input-error",
+  errorClass: "form__input-error",
 };
 
 function cardRender(item) {
@@ -53,6 +53,7 @@ function cardRender(item) {
 
 function closePopup(item) {
   item.classList.remove("popup_opened");
+  document.removeEventListener("keydown", escPopupClose);
 }
 
 function openPopup(item) {
@@ -62,17 +63,15 @@ function openPopup(item) {
 }
 
 const escPopupClose = (evt) => {
-  const popup = document.querySelector(".popup_opened");
   if (evt.code === "Escape") {
+    const popup = document.querySelector(".popup_opened");
     closePopup(popup);
-    document.removeEventListener("keydown", escPopupClose);
   }
 };
 
 const mousePopupClose = (evt) => {
-  const popup = document.querySelector(".popup_opened");
-  if (evt.target === popup) {
-    closePopup(popup);
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
   }
 };
 
