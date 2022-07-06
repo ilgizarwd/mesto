@@ -111,13 +111,14 @@ popupCloseButtonPlace.addEventListener("click", function () {
   closePopup(popupNewPlace);
 });
 
-const formPlace = popupNewPlace.querySelector(".form__input_text_place");
-const formLink = popupNewPlace.querySelector(".form__input_text_link");
+const formPlace = popupNewPlace.querySelector(".form__input_text_title");
+const formLink = popupNewPlace.querySelector(".form__input_text_subtitle");
 
 popupFormPlace.addEventListener("submit", formSubmitHandlerPlace);
 
 function formSubmitHandlerPlace(evt) {
   evt.preventDefault();
+
   const formTitlePlace = formPlace.value;
   const formLinkPlace = formLink.value;
   const item = {
