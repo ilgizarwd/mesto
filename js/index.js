@@ -18,7 +18,15 @@ initialCards.forEach(function (item) {
   cardList.append(cardRender(item));
 });
 
-enableValidation(formsConfig);
+const formsConfig = {
+  formSelector: "form",
+  formFieldset: "form__set",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button-save",
+  inactiveButtonClass: "form__button-save_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
 
 function cardRender(item) {
   const cardElement = cardTemplate.querySelector(".card__item").cloneNode(true);
@@ -138,3 +146,5 @@ function popUpSlideShow(item) {
   cardLink.alt = item.name;
   cardDesc.textContent = item.name;
 }
+
+enableValidation(formsConfig);
