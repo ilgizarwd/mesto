@@ -1,29 +1,29 @@
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(
     `.form__input-error_field_${inputElement.name}`
   );
-  inputElement.classList.add(formsConfig.inputErrorClass);
+  inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(formsConfig.errorClass);
+  errorElement.classList.add(config.errorClass);
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(
     `.form__input-error_field_${inputElement.name}`
   );
   // console.log(errorElement);
-  inputElement.classList.remove(formsConfig.inputErrorClass);
+  inputElement.classList.remove(config.inputErrorClass);
   // debugger;
   // errorElement.classList.remove(formsConfig.errorClass);
   errorElement.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
     console.log(inputElement.validity.valid);
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, config);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   }
 };
 const hasInvalidInput = (inputList) => {
@@ -43,35 +43,35 @@ const hasInvalidInput = (inputList) => {
   });
 };
 // const formIsValid = formPlaceFields.every(({ validity }) => validity.valid);
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, config) => {
   // Если есть хотя бы один невалидный инпут
   // console.log(inputList);
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.classList.add(formsConfig.inactiveButtonClass);
+    buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.setAttribute("disabled", "disabled");
   } else {
     // иначе сделай кнопку активной
-    buttonElement.classList.remove(formsConfig.inactiveButtonClass);
+    buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.removeAttribute("disabled");
   }
 };
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, config) => {
   const inputList = Array.from(
-    formElement.querySelectorAll(formsConfig.inputSelector)
+    formElement.querySelectorAll(config.inputSelector)
   );
   const buttonElement = formElement.querySelector(
-    formsConfig.submitButtonSelector
+    config.submitButtonSelector
   );
 
   // чтобы проверить состояние кнопки в самом начале
-  toggleButtonState(inputList, buttonElement);
+  toggleButtonState(inputList, buttonElement, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement, config);
       // чтобы проверять его при изменении любого из полей
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement, config);
     });
   });
 };
@@ -81,16 +81,25 @@ const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   // console.log(formList);
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
-    const fieldsetList = Array.from(
-      formElement.querySelectorAll(config.formFieldset)
-    );
-    // console.log(formElement);
+    // formElement.addEventListener("submit", function (evt) {
+    //   evt.preventDefault();
+    // });
+    setEventListeners(formElement, config);
+    // const fieldsetList = Array.from(
+    //   formElement.querySelectorAll(config.formFieldset)
+    // );
+    // // console.log(formElement);
 
-    fieldsetList.forEach((fieldSet) => {
-      setEventListeners(fieldSet);
-    });
+    // fieldsetList.forEach((fieldSet) => {
+    //   setEventListeners(fieldSet);
+    // });
+  });
+};
+
+const resetForm = (form, config) => {
+  form.reset();
+  const listInputs = Array.from(form.querySelectorAll(config.inputSelector));
+  listInputs.forEach((inputElement) => {
+    hideInputError(form, inputElement, config);
   });
 };

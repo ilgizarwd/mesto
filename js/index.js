@@ -18,13 +18,14 @@ initialCards.forEach(function (item) {
   cardList.append(cardRender(item));
 });
 
+
+
 const formsConfig = {
   formSelector: ".form",
-  formFieldset: ".form__set",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__button-save",
   inactiveButtonClass: "form__button-save_disabled",
-  inputErrorClass: "form__input-error",
+  inputErrorClass: "form__item_invalid",
   errorClass: "form__input-error",
 };
 
@@ -58,7 +59,7 @@ function closePopup(item) {
 
 function openPopup(item) {
   item.classList.add("popup_opened");
-  item.addEventListener("mousedown", mousePopupClose);
+
   document.addEventListener("keydown", escPopupClose);
 }
 
@@ -74,6 +75,9 @@ const mousePopupClose = (evt) => {
     closePopup(evt.target);
   }
 };
+popupProfileEdit.addEventListener("mousedown", mousePopupClose);
+popupNewPlace.addEventListener("mousedown", mousePopupClose);
+popupCardShow.addEventListener("mousedown", mousePopupClose);
 
 popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);
 
@@ -82,6 +86,7 @@ const popupCloseButtonEdit = popupProfileEdit.querySelector(
 );
 
 buttonEdit.addEventListener("click", () => {
+  resetForm(popupFormEdit, formsConfig);
   openPopup(popupProfileEdit);
   formTitle.value = profileTitle.textContent;
   formRole.value = profileRole.textContent;
@@ -99,6 +104,7 @@ function formSubmitHandlerEdit(evt) {
 }
 
 buttonAdd.addEventListener("click", () => {
+  resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
   popupFormPlace.reset();
 });
