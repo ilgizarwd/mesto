@@ -106,7 +106,7 @@ function formSubmitHandlerEdit(evt) {
 buttonAdd.addEventListener("click", () => {
   resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
-  popupFormPlace.reset();
+  enableValidation(formsConfig);
 });
 
 const popupCloseButtonPlace = popupNewPlace.querySelector(
@@ -154,3 +154,4 @@ function popUpSlideShow(item) {
 }
 
 enableValidation(formsConfig);
+
