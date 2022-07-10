@@ -96,10 +96,7 @@ const enableValidation = (config) => {
   });
 };
 
-const resetForm = (form, config) => {
-  form.reset();
-  const listInputs = Array.from(form.querySelectorAll(config.inputSelector));
-  listInputs.forEach((inputElement) => {
-    hideInputError(form, inputElement, config);
-  });
-};
+const buttonElement = form.querySelector(
+  config.submitButtonSelector
+);
+toggleButtonState(listInputs, buttonElement, config);

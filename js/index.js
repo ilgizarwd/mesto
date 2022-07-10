@@ -86,7 +86,6 @@ const popupCloseButtonEdit = popupProfileEdit.querySelector(
 );
 
 buttonEdit.addEventListener("click", () => {
-  resetForm(popupFormEdit, formsConfig);
   openPopup(popupProfileEdit);
   formTitle.value = profileTitle.textContent;
   formRole.value = profileRole.textContent;
@@ -104,9 +103,8 @@ function formSubmitHandlerEdit(evt) {
 }
 
 buttonAdd.addEventListener("click", () => {
-  resetForm(popupFormPlace, formsConfig);
+  popupFormPlace.reset();
   openPopup(popupNewPlace);
-  enableValidation(formsConfig);
 });
 
 const popupCloseButtonPlace = popupNewPlace.querySelector(
