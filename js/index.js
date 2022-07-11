@@ -104,6 +104,7 @@ function formSubmitHandlerEdit(evt) {
 
 buttonAdd.addEventListener("click", () => {
   popupFormPlace.reset();
+  resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
 });
 

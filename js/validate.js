@@ -21,7 +21,12 @@ const hideInputError = (formElement, inputElement, config) => {
 const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
     console.log(inputElement.validity.valid);
-    showInputError(formElement, inputElement, inputElement.validationMessage, config);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      config
+    );
   } else {
     hideInputError(formElement, inputElement, config);
   }
@@ -35,9 +40,9 @@ const hasInvalidInput = (inputList) => {
   // })
   // проходим по этому массиву методом some
   return inputList.some((inputElement) => {
-  //   // Если поле не валидно, колбэк вернёт true
-  //   // Обход массива прекратится и вся функция
-  //   // hasInvalidInput вернёт true
+    //   // Если поле не валидно, колбэк вернёт true
+    //   // Обход массива прекратится и вся функция
+    //   // hasInvalidInput вернёт true
     // console.log(inputElement);
     return !inputElement.validity.valid;
   });
@@ -60,9 +65,7 @@ const setEventListeners = (formElement, config) => {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector)
   );
-  const buttonElement = formElement.querySelector(
-    config.submitButtonSelector
-  );
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
   // чтобы проверить состояние кнопки в самом начале
   toggleButtonState(inputList, buttonElement, config);
@@ -96,7 +99,11 @@ const enableValidation = (config) => {
   });
 };
 
-const buttonElement = form.querySelector(
-  config.submitButtonSelector
-);
-toggleButtonState(listInputs, buttonElement, config);
+const resetForm = (form, config) => {
+  const listInputs = Array.from(form.querySelectorAll(config.inputSelector));
+  listInputs.forEach((inputElement) => {
+    hideInputError(form, inputElement, config);
+  });
+  const buttonElement = form.querySelector(config.submitButtonSelector);
+  toggleButtonState(listInputs, buttonElement, config);
+};
