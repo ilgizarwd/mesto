@@ -1,3 +1,11 @@
+import Cards from './Card.js';
+import FormFalidator from './FormValidator.js';
+const Card = new Cards('hgfd');
+Card.render('kkklll');
+
+const FormFalidators = new FormFalidator('hgfd455');
+FormFalidators.render('kkklll778887');
+
 const profileContainer = document.querySelector(".profile__container");
 const buttonEdit = profileContainer.querySelector(".profile__button-edit");
 const buttonAdd = profileContainer.querySelector(".profile__button-add");
@@ -14,9 +22,7 @@ const formRole = popupProfileEdit.querySelector(".form__input_text_subtitle");
 const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
 const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
 
-initialCards.forEach(function (item) {
-  cardList.append(cardRender(item));
-});
+
 
 
 
@@ -29,6 +35,9 @@ const formsConfig = {
   errorClass: "form__input-error",
 };
 
+initialCards.forEach(function (item) {
+  cardList.append(cardRender(item));
+});
 function cardRender(item) {
   const cardElement = cardTemplate.querySelector(".card__item").cloneNode(true);
   const cardButtonlike = cardElement.querySelector(".card__button-like");
