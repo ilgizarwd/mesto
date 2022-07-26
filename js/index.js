@@ -1,17 +1,6 @@
 import Cards from './Card.js';
 import FormFalidator from './FormValidator.js';
 const cardTemplate = document.querySelector(".card__template").content;
-// const cardList = document.querySelector(".card__list");
-
-// Card.render({name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'});
-initialCards.reverse().forEach((item) => {
-  const Card = new Cards(item, cardTemplate);
-  Card.render();
-})
-// Card.render(initialCards);
-
-
-// FormFalidators.render('kkklll778887');
 
 const profileContainer = document.querySelector(".profile__container");
 const buttonEdit = profileContainer.querySelector(".profile__button-edit");
@@ -151,28 +140,32 @@ function formSubmitHandlerPlace(evt) {
     link: formLinkPlace,
     name: formTitlePlace,
   };
-  const Card = new Cards(item, cardTemplate);
-  Card.render();
+  const Card = new Cards(item, cardTemplate, popUpSlideShow);
+  Card.getElement();
   closePopup(popupNewPlace);
 }
 
-// const popupCloseButtonShow = popupCardShow.querySelector(
-//   ".popup__button-close"
-// );
+const popupCloseButtonShow = popupCardShow.querySelector(
+  ".popup__button-close"
+);
 
-// popupCloseButtonShow.addEventListener("click", function () {
-//   closePopup(popupCardShow);
-// });
+popupCloseButtonShow.addEventListener("click", function () {
+  closePopup(popupCardShow);
+});
 
-// const cardLink = popupCardShow.querySelector(".popup__slide_link");
-// const cardDesc = popupCardShow.querySelector(".popup__slide_desc");
+const cardLink = popupCardShow.querySelector(".popup__slide_link");
+const cardDesc = popupCardShow.querySelector(".popup__slide_desc");
 
-// function popUpSlideShow(item) {
-//   openPopup(popupCardShow);
-//   cardLink.src = item.link;
-//   cardLink.alt = item.name;
-//   cardDesc.textContent = item.name;
-// }
+function popUpSlideShow(item) {
+  openPopup(popupCardShow);
+  cardLink.src = item.link;
+  cardLink.alt = item.name;
+  cardDesc.textContent = item.name;
+}
 
 // enableValidation(formsConfig);
 
+initialCards.reverse().forEach((item) => {
+  const Card = new Cards(item, cardTemplate, popUpSlideShow);
+  Card.getElement();
+})
