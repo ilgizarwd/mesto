@@ -1,18 +1,25 @@
 import Cards from './Card.js';
 import FormFalidator from './FormValidator.js';
-const Card = new Cards('hgfd');
-Card.render('kkklll');
+const cardTemplate = document.querySelector(".card__template").content;
+// const cardList = document.querySelector(".card__list");
 
-const FormFalidators = new FormFalidator('hgfd455');
-FormFalidators.render('kkklll778887');
+// Card.render({name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'});
+initialCards.reverse().forEach((item) => {
+  const Card = new Cards(item, cardTemplate);
+  Card.render();
+})
+// Card.render(initialCards);
+
+
+// FormFalidators.render('kkklll778887');
 
 const profileContainer = document.querySelector(".profile__container");
 const buttonEdit = profileContainer.querySelector(".profile__button-edit");
 const buttonAdd = profileContainer.querySelector(".profile__button-add");
 const profileTitle = profileContainer.querySelector(".profile__title");
 const profileRole = profileContainer.querySelector(".profile__text");
-const cardTemplate = document.querySelector(".card__template").content;
-const cardList = document.querySelector(".card__list");
+
+
 
 const popupProfileEdit = document.querySelector(".popup_profile-edit");
 const popupNewPlace = document.querySelector(".popup_new-place");
@@ -35,31 +42,36 @@ const formsConfig = {
   errorClass: "form__input-error",
 };
 
-initialCards.forEach(function (item) {
-  cardList.append(cardRender(item));
-});
-function cardRender(item) {
-  const cardElement = cardTemplate.querySelector(".card__item").cloneNode(true);
-  const cardButtonlike = cardElement.querySelector(".card__button-like");
-  const cardButtonTrash = cardElement.querySelector(".card__button-trash");
-  const newCardPhoto = cardElement.querySelector(".card__photo");
-  const newCardTitle = cardElement.querySelector(".card__title");
-  cardButtonlike.addEventListener("click", () => {
-    cardButtonlike.classList.toggle("card__button-like_liked");
-  });
-  cardButtonTrash.addEventListener("click", () => {
-    cardButtonTrash.closest(".card__item").remove();
-  });
+const FormFalidatory = new FormFalidator(formsConfig);
+FormFalidatory.enableValidation();
 
-  newCardPhoto.src = item.link;
-  newCardPhoto.alt = item.name;
-  newCardTitle.textContent = item.name;
+// initialCards.forEach((item) => {
+//   Card.render(item);
+//   console.log(item);
+// });
 
-  newCardPhoto.addEventListener("click", () => {
-    popUpSlideShow(item);
-  });
-  return cardElement;
-}
+// function cardRender(item) {
+//   const cardElement = cardTemplate.querySelector(".card__item").cloneNode(true);
+//   const cardButtonlike = cardElement.querySelector(".card__button-like");
+//   const cardButtonTrash = cardElement.querySelector(".card__button-trash");
+//   const newCardPhoto = cardElement.querySelector(".card__photo");
+//   const newCardTitle = cardElement.querySelector(".card__title");
+//   cardButtonlike.addEventListener("click", () => {
+//     cardButtonlike.classList.toggle("card__button-like_liked");
+//   });
+//   cardButtonTrash.addEventListener("click", () => {
+//     cardButtonTrash.closest(".card__item").remove();
+//   });
+
+//   newCardPhoto.src = item.link;
+//   newCardPhoto.alt = item.name;
+//   newCardTitle.textContent = item.name;
+
+//   newCardPhoto.addEventListener("click", () => {
+//     popUpSlideShow(item);
+//   });
+//   return cardElement;
+// }
 
 function closePopup(item) {
   item.classList.remove("popup_opened");
@@ -139,27 +151,28 @@ function formSubmitHandlerPlace(evt) {
     link: formLinkPlace,
     name: formTitlePlace,
   };
-  cardList.prepend(cardRender(item));
+  const Card = new Cards(item, cardTemplate);
+  Card.render();
   closePopup(popupNewPlace);
 }
 
-const popupCloseButtonShow = popupCardShow.querySelector(
-  ".popup__button-close"
-);
+// const popupCloseButtonShow = popupCardShow.querySelector(
+//   ".popup__button-close"
+// );
 
-popupCloseButtonShow.addEventListener("click", function () {
-  closePopup(popupCardShow);
-});
+// popupCloseButtonShow.addEventListener("click", function () {
+//   closePopup(popupCardShow);
+// });
 
-const cardLink = popupCardShow.querySelector(".popup__slide_link");
-const cardDesc = popupCardShow.querySelector(".popup__slide_desc");
+// const cardLink = popupCardShow.querySelector(".popup__slide_link");
+// const cardDesc = popupCardShow.querySelector(".popup__slide_desc");
 
-function popUpSlideShow(item) {
-  openPopup(popupCardShow);
-  cardLink.src = item.link;
-  cardLink.alt = item.name;
-  cardDesc.textContent = item.name;
-}
+// function popUpSlideShow(item) {
+//   openPopup(popupCardShow);
+//   cardLink.src = item.link;
+//   cardLink.alt = item.name;
+//   cardDesc.textContent = item.name;
+// }
 
-enableValidation(formsConfig);
+// enableValidation(formsConfig);
 
