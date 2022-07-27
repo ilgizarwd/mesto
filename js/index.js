@@ -1,5 +1,5 @@
-import Cards from './Card.js';
-import FormFalidator from './FormValidator.js';
+import Cards from "./Card.js";
+import FormValidator from "./FormValidator.js";
 const cardTemplate = document.querySelector(".card__template").content;
 
 const profileContainer = document.querySelector(".profile__container");
@@ -8,8 +8,6 @@ const buttonAdd = profileContainer.querySelector(".profile__button-add");
 const profileTitle = profileContainer.querySelector(".profile__title");
 const profileRole = profileContainer.querySelector(".profile__text");
 
-
-
 const popupProfileEdit = document.querySelector(".popup_profile-edit");
 const popupNewPlace = document.querySelector(".popup_new-place");
 const popupCardShow = document.querySelector(".popup_card-show");
@@ -17,10 +15,6 @@ const formTitle = popupProfileEdit.querySelector(".form__input_text_title");
 const formRole = popupProfileEdit.querySelector(".form__input_text_subtitle");
 const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
 const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
-
-
-
-
 
 const formsConfig = {
   formSelector: ".form",
@@ -31,8 +25,8 @@ const formsConfig = {
   errorClass: "form__input-error",
 };
 
-const FormFalidatory = new FormFalidator(formsConfig);
-FormFalidatory.enableValidation();
+const formValidator = new FormValidator(formsConfig);
+formValidator.enableValidation();
 
 // initialCards.forEach((item) => {
 //   Card.render(item);
@@ -140,8 +134,8 @@ function formSubmitHandlerPlace(evt) {
     link: formLinkPlace,
     name: formTitlePlace,
   };
-  const Card = new Cards(item, cardTemplate, popUpSlideShow);
-  Card.getElement();
+  const card = new Cards(item, cardTemplate, popUpSlideShow);
+  card.getElement();
   closePopup(popupNewPlace);
 }
 
@@ -166,6 +160,6 @@ function popUpSlideShow(item) {
 // enableValidation(formsConfig);
 
 initialCards.reverse().forEach((item) => {
-  const Card = new Cards(item, cardTemplate, popUpSlideShow);
-  Card.getElement();
-})
+  const card = new Cards(item, cardTemplate, popUpSlideShow);
+  card.getElement();
+});
