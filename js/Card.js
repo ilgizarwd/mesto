@@ -15,13 +15,13 @@ export default class Cards {
     );
     this._newCardPhoto = this._cardElement.querySelector(".card__photo");
     this._newCardTitle = this._cardElement.querySelector(".card__title");
+    this._newCardPhoto.src = this._link;
+    this._newCardPhoto.alt = this._name;
+    this._newCardTitle.textContent = this._name;
   }
 
   getElement = () => {
     this._setEventListeners();
-    this._newCardPhoto.src = this._link;
-    this._newCardPhoto.alt = this._name;
-    this._newCardTitle.textContent = this._name;
     this._cardList.prepend(this._cardElement);
   };
 

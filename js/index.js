@@ -25,36 +25,13 @@ const formsConfig = {
   errorClass: "form__input-error",
 };
 
+initialCards.reverse().forEach((item) => {
+  const card = new Cards(item, cardTemplate, popUpSlideShow);
+  card.getElement();
+});
+
 const formValidator = new FormValidator(formsConfig);
 formValidator.enableValidation();
-
-// initialCards.forEach((item) => {
-//   Card.render(item);
-//   console.log(item);
-// });
-
-// function cardRender(item) {
-//   const cardElement = cardTemplate.querySelector(".card__item").cloneNode(true);
-//   const cardButtonlike = cardElement.querySelector(".card__button-like");
-//   const cardButtonTrash = cardElement.querySelector(".card__button-trash");
-//   const newCardPhoto = cardElement.querySelector(".card__photo");
-//   const newCardTitle = cardElement.querySelector(".card__title");
-//   cardButtonlike.addEventListener("click", () => {
-//     cardButtonlike.classList.toggle("card__button-like_liked");
-//   });
-//   cardButtonTrash.addEventListener("click", () => {
-//     cardButtonTrash.closest(".card__item").remove();
-//   });
-
-//   newCardPhoto.src = item.link;
-//   newCardPhoto.alt = item.name;
-//   newCardTitle.textContent = item.name;
-
-//   newCardPhoto.addEventListener("click", () => {
-//     popUpSlideShow(item);
-//   });
-//   return cardElement;
-// }
 
 function closePopup(item) {
   item.classList.remove("popup_opened");
@@ -108,7 +85,7 @@ function formSubmitHandlerEdit(evt) {
 
 buttonAdd.addEventListener("click", () => {
   popupFormPlace.reset();
-  resetForm(popupFormPlace, formsConfig);
+  // resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
 });
 
@@ -156,10 +133,3 @@ function popUpSlideShow(item) {
   cardLink.alt = item.name;
   cardDesc.textContent = item.name;
 }
-
-// enableValidation(formsConfig);
-
-initialCards.reverse().forEach((item) => {
-  const card = new Cards(item, cardTemplate, popUpSlideShow);
-  card.getElement();
-});
