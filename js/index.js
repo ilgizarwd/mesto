@@ -15,7 +15,7 @@ const formTitle = popupProfileEdit.querySelector(".form__input_text_title");
 const formRole = popupProfileEdit.querySelector(".form__input_text_subtitle");
 const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
 const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
-
+const cardList = document.querySelector(".card__list");
 const formsConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
@@ -25,42 +25,47 @@ const formsConfig = {
   errorClass: "form__input-error",
 };
 
-initialCards.reverse().forEach((item) => {
-  const card = new Cards(item, cardTemplate, popUpSlideShow);
-  card.getElement();
+initialCards.forEach((item) => {
+  cardList.append(createCard(item));
 });
+
+function createCard(item) {
+  const card = new Cards(item, cardTemplate, showPopup);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 const formValidator = new FormValidator(formsConfig);
 formValidator.enableValidation();
 
 function closePopup(item) {
   item.classList.remove("popup_opened");
-  document.removeEventListener("keydown", escPopupClose);
+  document.removeEventListener("keydown", handleEscClose);
 }
 
 function openPopup(item) {
   item.classList.add("popup_opened");
 
-  document.addEventListener("keydown", escPopupClose);
+  document.addEventListener("keydown", handleEscClose);
 }
 
-const escPopupClose = (evt) => {
+const handleEscClose = (evt) => {
   if (evt.code === "Escape") {
     const popup = document.querySelector(".popup_opened");
     closePopup(popup);
   }
 };
 
-const mousePopupClose = (evt) => {
+const handleMouseClose = (evt) => {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
   }
 };
-popupProfileEdit.addEventListener("mousedown", mousePopupClose);
-popupNewPlace.addEventListener("mousedown", mousePopupClose);
-popupCardShow.addEventListener("mousedown", mousePopupClose);
+popupProfileEdit.addEventListener("mousedown", handleMouseClose);
+popupNewPlace.addEventListener("mousedown", handleMouseClose);
+popupCardShow.addEventListener("mousedown", handleMouseClose);
 
-popupFormEdit.addEventListener("submit", formSubmitHandlerEdit);
+popupFormEdit.addEventListener("submit", handleProfileFormSubmit);
 
 const popupCloseButtonEdit = popupProfileEdit.querySelector(
   ".popup__button-close"
@@ -76,7 +81,7 @@ popupCloseButtonEdit.addEventListener("click", () => {
   closePopup(popupProfileEdit);
 });
 
-function formSubmitHandlerEdit(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = formTitle.value;
   profileRole.textContent = formRole.value;
@@ -85,6 +90,7 @@ function formSubmitHandlerEdit(evt) {
 
 buttonAdd.addEventListener("click", () => {
   popupFormPlace.reset();
+  formValidator.resetForm(popupFormPlace, formsConfig)
   // resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
 });
@@ -100,9 +106,9 @@ popupCloseButtonPlace.addEventListener("click", function () {
 const formPlace = popupNewPlace.querySelector(".form__input_text_title");
 const formLink = popupNewPlace.querySelector(".form__input_text_subtitle");
 
-popupFormPlace.addEventListener("submit", formSubmitHandlerPlace);
+popupFormPlace.addEventListener("submit", handlePlaceFormSubmit);
 
-function formSubmitHandlerPlace(evt) {
+function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
 
   const formTitlePlace = formPlace.value;
@@ -111,8 +117,7 @@ function formSubmitHandlerPlace(evt) {
     link: formLinkPlace,
     name: formTitlePlace,
   };
-  const card = new Cards(item, cardTemplate, popUpSlideShow);
-  card.getElement();
+  cardList.prepend(createCard(item));
   closePopup(popupNewPlace);
 }
 
@@ -127,7 +132,7 @@ popupCloseButtonShow.addEventListener("click", function () {
 const cardLink = popupCardShow.querySelector(".popup__slide_link");
 const cardDesc = popupCardShow.querySelector(".popup__slide_desc");
 
-function popUpSlideShow(item) {
+function showPopup(item) {
   openPopup(popupCardShow);
   cardLink.src = item.link;
   cardLink.alt = item.name;

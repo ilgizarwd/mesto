@@ -1,10 +1,10 @@
 export default class Cards {
-  constructor(item, cardTemplate, popUpSlideShow) {
+  constructor(item, cardTemplate, handleCardClick) {
     this._name = item.name;
     this._link = item.link;
     this._cardTemplate = cardTemplate;
-    this._popUpSlideShow = popUpSlideShow;
-    this._cardList = document.querySelector(".card__list");
+    this._handleCardClick = handleCardClick;
+
     this._cardElement = this._cardTemplate
       .querySelector(".card__item")
       .cloneNode(true);
@@ -15,14 +15,14 @@ export default class Cards {
     );
     this._newCardPhoto = this._cardElement.querySelector(".card__photo");
     this._newCardTitle = this._cardElement.querySelector(".card__title");
+  }
+
+  generateCard = () => {
     this._newCardPhoto.src = this._link;
     this._newCardPhoto.alt = this._name;
     this._newCardTitle.textContent = this._name;
-  }
-
-  getElement = () => {
     this._setEventListeners();
-    this._cardList.prepend(this._cardElement);
+    return this._cardElement;
   };
 
   _setEventListeners = () => {
@@ -33,7 +33,7 @@ export default class Cards {
       this._cardButtonTrash.closest(".card__item").remove();
     });
     this._newCardPhoto.addEventListener("click", () => {
-      this._popUpSlideShow({ link: this._link, name: this._name });
+      this._handleCardClick({ link: this._link, name: this._name });
     });
   };
 }
