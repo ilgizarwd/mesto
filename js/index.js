@@ -35,8 +35,11 @@ function createCard(item) {
   return cardElement;
 }
 
-const formValidator = new FormValidator(formsConfig);
-formValidator.enableValidation();
+const newPlaceValidator = new FormValidator(formsConfig, '.form_new-place');
+newPlaceValidator.enableValidation();
+
+const editValidator = new FormValidator(formsConfig, '.form_edit');
+editValidator.enableValidation();
 
 function closePopup(item) {
   item.classList.remove("popup_opened");
@@ -56,14 +59,28 @@ const handleEscClose = (evt) => {
   }
 };
 
-const handleMouseClose = (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target);
-  }
-};
-popupProfileEdit.addEventListener("mousedown", handleMouseClose);
-popupNewPlace.addEventListener("mousedown", handleMouseClose);
-popupCardShow.addEventListener("mousedown", handleMouseClose);
+// const handleMouseClose = (evt) => {
+//   if (evt.target === evt.currentTarget) {
+//     closePopup(evt.target);
+//   }
+// };
+// popupProfileEdit.addEventListener("mousedown", handleMouseClose);
+// popupNewPlace.addEventListener("mousedown", handleMouseClose);
+// popupCardShow.addEventListener("mousedown", handleMouseClose);
+
+const popups = document.querySelectorAll('.popup')
+
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+})
+
 
 popupFormEdit.addEventListener("submit", handleProfileFormSubmit);
 
@@ -90,7 +107,7 @@ function handleProfileFormSubmit(evt) {
 
 buttonAdd.addEventListener("click", () => {
   popupFormPlace.reset();
-  formValidator.resetForm(popupFormPlace, formsConfig)
+  newPlaceValidator.resetForm(popupFormPlace, formsConfig)
   // resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
 });
