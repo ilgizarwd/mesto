@@ -30,7 +30,7 @@ initialCards.forEach((item) => {
 });
 
 function createCard(item) {
-  const card = new Cards(item, cardTemplate, showPopup);
+  const card = new Cards(item, cardTemplate, handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -75,7 +75,7 @@ popups.forEach((popup) => {
         if (evt.target.classList.contains('popup_opened')) {
             closePopup(popup)
         }
-        if (evt.target.classList.contains('popup__close')) {
+        if (evt.target.classList.contains('popup__button-close')) {
           closePopup(popup)
         }
     })
@@ -84,19 +84,13 @@ popups.forEach((popup) => {
 
 popupFormEdit.addEventListener("submit", handleProfileFormSubmit);
 
-const popupCloseButtonEdit = popupProfileEdit.querySelector(
-  ".popup__button-close"
-);
-
 buttonEdit.addEventListener("click", () => {
-  openPopup(popupProfileEdit);
+    openPopup(popupProfileEdit);
   formTitle.value = profileTitle.textContent;
   formRole.value = profileRole.textContent;
+  editValidator.resetForm()
 });
 
-popupCloseButtonEdit.addEventListener("click", () => {
-  closePopup(popupProfileEdit);
-});
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -107,18 +101,11 @@ function handleProfileFormSubmit(evt) {
 
 buttonAdd.addEventListener("click", () => {
   popupFormPlace.reset();
-  newPlaceValidator.resetForm(popupFormPlace, formsConfig)
+  newPlaceValidator.resetForm()
   // resetForm(popupFormPlace, formsConfig);
   openPopup(popupNewPlace);
 });
 
-const popupCloseButtonPlace = popupNewPlace.querySelector(
-  ".popup__button-close"
-);
-
-popupCloseButtonPlace.addEventListener("click", function () {
-  closePopup(popupNewPlace);
-});
 
 const formPlace = popupNewPlace.querySelector(".form__input_text_title");
 const formLink = popupNewPlace.querySelector(".form__input_text_subtitle");
@@ -138,18 +125,10 @@ function handlePlaceFormSubmit(evt) {
   closePopup(popupNewPlace);
 }
 
-const popupCloseButtonShow = popupCardShow.querySelector(
-  ".popup__button-close"
-);
-
-popupCloseButtonShow.addEventListener("click", function () {
-  closePopup(popupCardShow);
-});
-
 const cardLink = popupCardShow.querySelector(".popup__slide_link");
 const cardDesc = popupCardShow.querySelector(".popup__slide_desc");
 
-function showPopup(item) {
+function handleCardClick(item) {
   openPopup(popupCardShow);
   cardLink.src = item.link;
   cardLink.alt = item.name;
