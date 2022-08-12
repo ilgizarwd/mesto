@@ -1,7 +1,7 @@
 export default class Cards {
-  constructor(item, cardTemplate, handleCardClick) {
-    this._name = item.name;
-    this._link = item.link;
+  constructor( {name, link}, cardTemplate, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._cardTemplate = cardTemplate;
     this._handleCardClick = handleCardClick;
 
@@ -34,6 +34,7 @@ export default class Cards {
     });
     this._newCardPhoto.addEventListener("click", () => {
       this._handleCardClick({ link: this._link, name: this._name });
+      console.log(this._link)
     });
   };
 }
