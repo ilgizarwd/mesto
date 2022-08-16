@@ -1,10 +1,11 @@
-import Cards from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-
+import './index.css';
+import Cards from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import { initialCards } from '../components/cards.js';
 const cardTemplate = document.querySelector(".card__template").content;
 
 const profileContainer = document.querySelector(".profile__container");
@@ -57,24 +58,22 @@ const profileEdit = new PopupWithForm(
   handleProfileFormSubmit
 );
 const newPlace = new PopupWithForm(popupNewPlace, handlePlaceFormSubmit);
-
+const userInfo = new UserInfo({title: profileTitle, role: profileRole });
 
 buttonEdit.addEventListener("click", () => {
   profileEdit.open();
-  profileEdit.setEventListeners();
-  const userInfor = new UserInfo(formTitle, formRole);
-  const profileData = userInfor.getUserInfo();
-  // { profileTitle, profileRole } = profileData;
-  console.log(profileData)
-  formTitle.value = profileTitle;
-  formRole.value = profileRole;
+
+  const userData = userInfo.getUserInfo();
+  formTitle.value = userData.title;
+  formRole.value = userData.role;
   editValidator.resetForm();
 });
 
 function handleProfileFormSubmit({ formInputName, formInputRole }) {
-  console.log(formInputName)
-  profileTitle.textContent = formInputName;
-  profileRole.textContent = formInputRole;
+  // const userInfo = new UserInfo({ formInputName, formInputRole });
+  userInfo.setUserInfo(formTitle, formRole);
+  // profileTitle.textContent = userData.title;
+  // profileRole.textContent = userData.role;
   profileEdit.close();
 }
 function handlePlaceFormSubmit(data) {
@@ -82,19 +81,15 @@ function handlePlaceFormSubmit(data) {
   const cardElement = card.generateCard();
   cardList.prepend(cardElement);
   newPlace.close();
-  // debugger;
 }
 
 buttonAdd.addEventListener("click", () => {
-    debugger;
   popupFormPlace.reset();
   newPlaceValidator.resetForm();
   newPlace.open();
-  newPlace.setEventListeners();
 });
 
 function handleCardClick(item) {
   const cardShow = new PopupWithImage(popupCardShow, { item });
   cardShow.open();
-  cardShow.setEventListeners();
 }

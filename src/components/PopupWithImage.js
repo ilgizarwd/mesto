@@ -8,6 +8,7 @@ export default class PopupWithImage extends Popup {
     this._name = item.name
     this._cardLink = this._selector.querySelector(".popup__slide_link");
     this._cardDesc = this._selector.querySelector(".popup__slide_desc");
+    super.setEventListeners();
   }
 
   open() {

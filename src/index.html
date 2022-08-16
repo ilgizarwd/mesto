@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <link rel="icon" type="image/x-icon" href="//praktikum.s3.yandex.net/praktikum/v1.27.4-1659019200/static/favicon.png">
     <title>Mesto</title>
   </head>
 
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo/logo.svg" alt="Лого шапки" />
+      <img class="header__logo" src="<%=require('./images/logo/logo.svg')%>" alt="Лого шапки" />
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__container">
           <img
-            src="./images/content/avatar/image.jpg"
+            src="<%=require('./images/content/avatar/image.jpg')%>"
             alt="Фото автора"
             class="profile__avatar"
           />
@@ -138,8 +138,8 @@
         </div>
       </li>
     </template>
-    <script src="./js/cards.js"></script>
-    <!-- <script src="./js/validate.js"></script> -->
-    <script type="module" src="./js/index.js"></script>
+    <!-- <script src="./js/cards.js"></script>
+    <script src="./js/validate.js"></script>
+    <script type="module" src="./js/index.js"></script> -->
   </body>
 </html>
