@@ -6,7 +6,8 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards } from '../utils/cards.js';
-
+import image from "../images/content/avatar/image.jpg";
+import logo from "../images/logo/logo.svg";
 
 const profileContainer = document.querySelector(".profile__container");
 const buttonEdit = profileContainer.querySelector(".profile__button-edit");
