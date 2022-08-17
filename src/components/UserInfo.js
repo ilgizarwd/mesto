@@ -11,8 +11,8 @@ export default class UserInfo {
 
       return userInfo;
     }
-    setUserInfo(title, role) {
-      this._formTitle.textContent = title.value;
-      this._formRole.textContent = role.value;
+    setUserInfo( {title, role} ) {
+      this._formTitle.textContent = title;
+      this._formRole.textContent = role;
     }
 }
