@@ -11,6 +11,13 @@ module.exports = {
     clean: true, // удалять каталог dist
   },
   devtool: 'inline-source-map', // показывает ошибки в исходных файлах
+  mode: 'development',
+  devServer: {
+    static: path.resolve(__dirname, './dist'),
+    open: true,
+    compress: true,
+    port: 8080
+  },
   module: {
     rules: [
       // загружаем js-библиотеки
@@ -26,9 +33,19 @@ module.exports = {
       },
       // загружаем изображения и шрифты
       {
-        test: /\.(png|svg|jpg|gif|ico|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
         type: 'asset/resource',
-      },
+        generator: {
+            filename: 'images/[name].[hash][ext]',
+        }
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      type: 'asset/resource',
+      generator: {
+        filename: 'fonts/[name].[hash][ext]',
+      }
+    },
       // загружаем css
       {
         test: /\.css$/,
