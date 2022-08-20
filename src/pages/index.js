@@ -22,7 +22,6 @@ const formTitle = popupProfileEdit.querySelector(".form__input_text_title");
 const formRole = popupProfileEdit.querySelector(".form__input_text_subtitle");
 const popupFormPlace = popupNewPlace.querySelector(".form_new-place");
 const popupFormEdit = popupProfileEdit.querySelector(".form_edit");
-// const cardList = document.querySelector(".card__list");
 const cardListSection = ".card__list";
 
 const formsConfig = {
@@ -55,6 +54,7 @@ const profileEdit = new PopupWithForm(
   handleProfileFormSubmit
 );
 const newPlace = new PopupWithForm(popupNewPlace, handlePlaceFormSubmit);
+newPlace.setEventListeners();
 const userInfo = new UserInfo({title: profileTitle, role: profileRole });
 
 buttonEdit.addEventListener("click", () => {
@@ -66,7 +66,7 @@ buttonEdit.addEventListener("click", () => {
 });
 
 function handleProfileFormSubmit({ formInputName, formInputRole }) {
-  const setInfoData = { title: formTitle.value, role: formRole.value };
+  const setInfoData = { title: formInputName, role: formInputRole };
   userInfo.setUserInfo(setInfoData);
   profileEdit.close();
 }
@@ -82,13 +82,12 @@ buttonAdd.addEventListener("click", () => {
 });
 
 const cardShow = new PopupWithImage(popupCardShow);
+cardShow.setEventListeners();
 function handleCardClick(item) {
   cardShow.open(item);
-  cardShow.setEventListeners();
 }
 
 function handleCardCreate(item) {
   const card = new Cards(item, ".card__template", handleCardClick);
-  const cardElement = card.generateCard();
-  return cardElement;
+  return card.generateCard();
 }

@@ -1,8 +1,8 @@
 export default class Cards {
-  constructor({ name, link }, cardTemplate, handleCardClick) {
+  constructor({ name, link }, cardTemplateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
-    this._cardTemplate = cardTemplate = document.querySelector(cardTemplate).content;
+    this._cardTemplate = document.querySelector(cardTemplateSelector).content;
     this._handleCardClick = handleCardClick;
 
     this._cardElement = this._cardTemplate
