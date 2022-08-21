@@ -1,11 +1,11 @@
-import './index.css';
+import "./index.css";
 import Cards from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { initialCards } from '../utils/cards.js';
+import { initialCards } from "../utils/cards.js";
 import image from "../images/content/avatar/image.jpg";
 import logo from "../images/logo/logo.svg";
 
@@ -34,7 +34,8 @@ const formsConfig = {
 };
 
 const cardsList = new Section(
-  {renderer: (item) => {
+  {
+    renderer: (item) => {
       cardsList.addItem(handleCardCreate(item));
     },
   },
@@ -53,9 +54,10 @@ const profileEdit = new PopupWithForm(
   popupProfileEdit,
   handleProfileFormSubmit
 );
+profileEdit.setEventListeners();
 const newPlace = new PopupWithForm(popupNewPlace, handlePlaceFormSubmit);
 newPlace.setEventListeners();
-const userInfo = new UserInfo({title: profileTitle, role: profileRole });
+const userInfo = new UserInfo({ title: profileTitle, role: profileRole });
 
 buttonEdit.addEventListener("click", () => {
   profileEdit.open();
