@@ -1,8 +1,0 @@
-.card__description {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  z-index: 2;
-  padding: 0 15px 24px 21px;
-}
