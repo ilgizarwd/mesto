@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js"
 import { initialCards } from "../utils/cards.js";
 import image from "../images/content/avatar/image.jpg";
 import logo from "../images/logo/logo.svg";
@@ -33,6 +34,14 @@ const formsConfig = {
   errorClass: "form__input-error",
 };
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-48',
+  headers: {
+    authorization: 'cc10f52f-9ca1-4d2e-8a59-ab54b230d125',
+    'Content-Type': 'application/json'
+  }
+});
+
 const cardsList = new Section(
   {
     renderer: (item) => {
@@ -41,8 +50,8 @@ const cardsList = new Section(
   },
   cardListSection
 );
-
-cardsList.renderItems(initialCards);
+console.log(api.getInitialCards())
+cardsList.renderItems(api.getInitialCards());
 
 const newPlaceValidator = new FormValidator(formsConfig, popupFormPlace);
 newPlaceValidator.enableValidation();
